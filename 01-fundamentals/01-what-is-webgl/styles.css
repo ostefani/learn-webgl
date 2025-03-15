@@ -1,10 +1,28 @@
 body {
     margin: 0;
     overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
 }
 
 canvas {
     display: block;
     width: 100vw;
-    height: 100vh;
+    height: 70vh;
+}
+
+#info {
+    padding: 20px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.warning {
+    color: orange;
+    font-weight: bold;
 }
