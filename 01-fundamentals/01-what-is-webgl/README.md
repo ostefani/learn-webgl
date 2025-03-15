@@ -6,8 +6,7 @@ Unlike DOM manipulation, WebGL provides low-level access to your GPU through the
 
 By leveraging GPU hardware acceleration, WebGL can render complex 3D scenes at 60fps or higher.
 
-<img width="827" alt="Screenshot 2025-03-15 at 2 32 59 PM" src="https://github.com/user-attachments/assets/82914f25-d98e-4d35-9290-5ab55b04f7f3" />
-
+<img width="400" alt="Screenshot 2025-03-15 at 2 32 59 PM" src="https://github.com/user-attachments/assets/82914f25-d98e-4d35-9290-5ab55b04f7f3" />
 
 ## How It Works
 
