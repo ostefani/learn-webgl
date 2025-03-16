@@ -1,13 +1,10 @@
 # WebGL Learning Path
 
-A progressive series of WebGL examples from fundamentals to advanced techniques. This repository contains code samples supporting the WebGL educational series.
+A series of WebGL examples from fundamentals to advanced techniques. This repository contains code samples supporting the WebGL educational series.
 
 ## Structure
 
 -   **01-fundamentals**: Core concepts of WebGL and graphics programming
--   **02-practical-application**: Building real WebGL applications
--   **03-react-integration**: Combining WebGL with React
--   **04-advanced-techniques**: Performance optimization and visual effects
 
 ## Getting Started
 
