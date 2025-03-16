@@ -10,6 +10,7 @@ WebGL functions as an interface layer that translates JavaScript instructions in
 
 **CPU (Central Processing Unit)**:
 
+
 -   Features a limited number of high-performance cores (typically 4-32)
 -   Optimized for sequential processing and complex branching logic
 -   High single-threaded performance
