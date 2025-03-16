@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WebGL Rendering Pipeline</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <canvas id="webgl-canvas"></canvas>
+        <div id="pipeline-info">
+            <h1>WebGL Rendering Pipeline</h1>
+            <div class="pipeline-stage" id="js-stage">
+                <h3>1. JavaScript Setup</h3>
+                <code>const positions = new Float32Array([0.0, 0.5, -0.5, -0.5, 0.5, -0.5]);</code>
+            </div>
+            <div class="pipeline-stage" id="buffer-stage">
+                <h3>2. Buffer Data Transfer</h3>
+                <code>gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);</code>
+            </div>
+            <div class="pipeline-stage" id="vertex-stage">
+                <h3>3. Vertex Shader</h3>
+                <code>gl_Position = vec4(position, 0.0, 1.0);</code>
+            </div>
+            <div class="pipeline-stage" id="assembly-stage">
+                <h3>4. Primitive Assembly</h3>
+                <code>gl.drawArrays(gl.TRIANGLES, 0, 3);</code>
+            </div>
+            <div class="pipeline-stage" id="fragment-stage">
+                <h3>5. Fragment Shader</h3>
+                <code>gl_FragColor = vec4(fragPos, 0.5, 1.0);</code>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>

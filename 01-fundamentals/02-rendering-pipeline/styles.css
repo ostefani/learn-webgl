@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 50vh;
+    border-bottom: 1px solid #333;
+}
+
+#pipeline-info {
+    padding: 20px;
+    background-color: white;
+}
+
+.pipeline-stage {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #eef;
+    border-left: 5px solid #99c;
+    opacity: 0.7;
+    transition: opacity 0.3s, background-color 0.3s, border-left-color 0.3s;
+}
+
+.pipeline-stage.active {
+    opacity: 1;
+    background-color: #ddf;
+    border-left-color: #55a;
+}
+
+code {
+    display: block;
+    padding: 10px;
+    background-color: #333;
+    color: #eee;
+    font-family: monospace;
+    border-radius: 4px;
+    overflow-x: auto;
+}
