@@ -1,21 +1,26 @@
-# WebGL Learning Path
+# WebGL Knowledge Reinforcement
 
-A series of WebGL examples from fundamentals to advanced techniques. This repository contains code samples supporting the WebGL educational series.
+This repo is my playground for revisiting WebGL concepts to solidify my knowledge. It offers a learning path for others interested in 3D graphics programming on the web.
 
-## Structure
+## What's Planned Inside
 
--   **01-fundamentals**: Core concepts of WebGL and graphics programming
+-   **Fundamentals**: Core WebGL concepts, coordinate systems, and the graphics pipeline
+-   **Three.js Integration**: Leveraging Three.js for more efficient 3D development
+-   **React Integration**: Combining WebGL and Three.js with React applications
+-   **Advanced Techniques**: Performance optimization, shaders, and visual effects
+
+_Note: This README will be updated regularly as I add new examples and insights._
 
 ## Getting Started
 
 1. Clone this repository
 2. Open examples directly in your browser
-3. Navigate through folders sequentially for best learning experience
+3. Follow the folders sequentially for thorough understanding
 
 ## Requirements
 
 -   Modern browser with WebGL support (Chrome, Firefox, Safari, Edge)
--   JavaScript knowledge
+-   Basic JavaScript knowledge
 -   Text editor for code experimentation
 
 ## Resources
