@@ -10,7 +10,6 @@ WebGL functions as an interface layer that translates JavaScript instructions in
 
 **CPU (Central Processing Unit)**:
 
-
 -   Features a limited number of high-performance cores (typically 4-32)
 -   Optimized for sequential processing and complex branching logic
 -   High single-threaded performance
@@ -173,6 +172,7 @@ Effective WebGL programming requires disciplined state management:
     ```
 
 4. **Encapsulation**: Use objects or functions to encapsulate state-dependent operations, ensuring states are properly set before operations and optionally restored afterward.
+
     ```js
     class Mesh {
         render() {
@@ -190,6 +190,14 @@ Effective WebGL programming requires disciplined state management:
         }
     }
     ```
+
+GPUs are stateful processors. They are designed to receive a set of configurations.
+
+First, WebGL state-based architecture enables direct mapping of API calls to underlying GPU operations, minimizing translation overhead between high-level commands and low-level instructions.
+
+Second, it allows developers to configure rendering parameters once and maintain them across multiple draw operations, modifying only specific states when needed rather than reconfiguring everything for each frame.
+
+This approach significantly reduces rendering overhead and improves performance, particularly for complex animations and real-time graphics applications where efficiency is critical.
 
 Understanding WebGL's state machine nature is essential for writing efficient and error-free graphics code. Many common WebGL bugs stem from incorrect assumptions about state, particularly when code does not account for the persistent nature of state changes.
 
