@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700">
+  <!-- Background -->
+  <rect width="800" height="700" fill="#27008b" />
+  
+  <!-- Title -->
+  <rect x="100" y="20" width="600" height="60" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+  <text x="400" y="60" font-family="Arial, sans-serif" font-size="28" text-anchor="middle" font-weight="bold" fill="#333">View Frustum and Frustum Culling</text>
+  
+  <!-- Main content container -->
+  <rect x="40" y="100" width="720" height="300" rx="15" ry="15" fill="#f0f0f0" opacity="0.9" />
+  
+  <!-- Main visualization - Isometric view -->
+  <g transform="translate(50, 110)">
+    <rect x="0" y="0" width="300" height="280" rx="10" ry="10" fill="white" stroke="#ddd" stroke-width="1" />
+    <text x="150" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">Isometric View</text>
+    
+    <!-- Grid floor for reference -->
+    <path d="M50 250 L250 250 L250 100 L50 100 Z" fill="#f0f0f0" stroke="#ddd" stroke-width="1" />
+    <line x1="50" y1="130" x2="250" y2="130" stroke="#ddd" stroke-width="1" />
+    <line x1="50" y1="160" x2="250" y2="160" stroke="#ddd" stroke-width="1" />
+    <line x1="50" y1="190" x2="250" y2="190" stroke="#ddd" stroke-width="1" />
+    <line x1="50" y1="220" x2="250" y2="220" stroke="#ddd" stroke-width="1" />
+    <line x1="80" y1="100" x2="80" y2="250" stroke="#ddd" stroke-width="1" />
+    <line x1="110" y1="100" x2="110" y2="250" stroke="#ddd" stroke-width="1" />
+    <line x1="140" y1="100" x2="140" y2="250" stroke="#ddd" stroke-width="1" />
+    <line x1="170" y1="100" x2="170" y2="250" stroke="#ddd" stroke-width="1" />
+    <line x1="200" y1="100" x2="200" y2="250" stroke="#ddd" stroke-width="1" />
+    <line x1="230" y1="100" x2="230" y2="250" stroke="#ddd" stroke-width="1" />
+    
+    <!-- Camera with clear direction -->
+    <circle cx="150" cy="200" r="10" fill="#722ed1" stroke="#333" stroke-width="2" />
+    
+    <!-- Viewing direction arrow -->
+    <line x1="150" y1="200" x2="150" y2="130" stroke="#722ed1" stroke-width="2" stroke-dasharray="5,3" />
+    <polygon points="150,130 145,140 155,140" fill="#722ed1" />
+    <text x="165" y="160" font-family="Arial, sans-serif" font-size="12" fill="#333">Viewing Direction</text>
+    
+    <!-- View Frustum - Perspective shape -->
+    <!-- Near plane -->
+    <path d="M120 180 L180 180 L180 160 L120 160 Z" fill="rgba(114, 46, 209, 0.2)" stroke="#722ed1" stroke-width="2" />
+    <!-- Far plane -->
+    <path d="M70 130 L230 130 L230 70 L70 70 Z" fill="rgba(114, 46, 209, 0.2)" stroke="#722ed1" stroke-width="2" />
+    <!-- Connect planes -->
+    <line x1="120" y1="160" x2="70" y2="70" stroke="#722ed1" stroke-width="2" />
+    <line x1="180" y1="160" x2="230" y2="70" stroke="#722ed1" stroke-width="2" />
+    <line x1="120" y1="180" x2="70" y2="130" stroke="#722ed1" stroke-width="2" />
+    <line x1="180" y1="180" x2="230" y2="130" stroke="#722ed1" stroke-width="2" />
+    
+    <!-- Labels for near and far plane -->
+    <text x="150" y="175" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">Near Plane</text>
+    <text x="150" y="105" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">Far Plane</text>
+    
+    <!-- Objects inside frustum - clearly visible -->
+    <rect x="140" y="145" width="15" height="15" fill="#52c41a" stroke="#333" stroke-width="1.5" />
+    <text x="147" y="140" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">A</text>
+    
+    <circle cx="170" cy="120" r="10" fill="#52c41a" stroke="#333" stroke-width="1.5" />
+    <text x="170" y="110" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">B</text>
+    
+    <polygon points="120,140 130,120 140,140" fill="#52c41a" stroke="#333" stroke-width="1.5" />
+    <text x="130" y="115" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">C</text>
+    
+    <!-- Objects outside frustum - clearly culled -->
+    <rect x="80" y="210" width="20" height="20" fill="#fa8c16" opacity="0.3" stroke="#fa8c16" stroke-width="1.5" stroke-dasharray="4,2" />
+    <text x="90" y="220" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">D</text>
+    
+    <circle cx="210" cy="220" r="15" fill="#fa8c16" opacity="0.3" stroke="#fa8c16" stroke-width="1.5" stroke-dasharray="4,2" />
+    <text x="210" y="220" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">E</text>
+    
+    <!-- Partially visible object -->
+    <rect x="190" y="150" width="30" height="30" fill="#333" opacity="0.4" stroke="#333" stroke-width="1.5" />
+    <text x="205" y="170" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="white">F</text>
+  </g>
+  
+  <!-- Top view (for clarity) -->
+  <g transform="translate(450, 110)">
+    <rect x="0" y="0" width="300" height="280" rx="10" ry="10" fill="white" stroke="#ddd" stroke-width="1" />
+    <text x="150" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">Top View</text>
+    
+    <!-- Grid for reference -->
+    <rect x="50" y="60" width="200" height="160" fill="#f0f0f0" stroke="#ddd" stroke-width="1" />
+    <line x1="50" y1="100" x2="250" y2="100" stroke="#ddd" stroke-width="1" />
+    <line x1="50" y1="140" x2="250" y2="140" stroke="#ddd" stroke-width="1" />
+    <line x1="50" y1="180" x2="250" y2="180" stroke="#ddd" stroke-width="1" />
+    <line x1="90" y1="60" x2="90" y2="220" stroke="#ddd" stroke-width="1" />
+    <line x1="130" y1="60" x2="130" y2="220" stroke="#ddd" stroke-width="1" />
+    <line x1="170" y1="60" x2="170" y2="220" stroke="#ddd" stroke-width="1" />
+    <line x1="210" y1="60" x2="210" y2="220" stroke="#ddd" stroke-width="1" />
+    
+    <!-- Camera position -->
+    <circle cx="150" cy="190" r="8" fill="#722ed1" stroke="#333" stroke-width="1.5" />
+    <text x="150" y="210" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">Camera</text>
+    
+    <!-- View frustum from top -->
+    <path d="M150 190 L110 140 L190 140 Z" fill="rgba(114, 46, 209, 0.2)" stroke="#722ed1" stroke-width="2" />
+    <path d="M110 140 L70 80 L230 80 L190 140 Z" fill="rgba(114, 46, 209, 0.2)" stroke="#722ed1" stroke-width="2" />
+    
+    <!-- Objects with same labels as isometric view -->
+    <rect x="145" y="160" width="10" height="10" fill="#52c41a" stroke="#333" stroke-width="1.5" />
+    <text x="150" y="156" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">A</text>
+    
+    <circle cx="170" cy="120" r="8" fill="#52c41a" stroke="#333" stroke-width="1.5" />
+    <text x="170" y="120" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">B</text>
+    
+    <polygon points="120,130 130,120 140,130" fill="#52c41a" stroke="#333" stroke-width="1.5" />
+    <text x="130" y="125" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">C</text>
+    
+    <rect x="100" y="180" width="15" height="15" fill="#fa8c16" opacity="0.3" stroke="#fa8c16" stroke-width="1.5" stroke-dasharray="4,2" />
+    <text x="107" y="192" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">D</text>
+    
+    <circle cx="200" cy="180" r="10" fill="#fa8c16" opacity="0.3" stroke="#fa8c16" stroke-width="1.5" stroke-dasharray="4,2" />
+    <text x="200" y="183" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="#333">E</text>
+    
+    <!-- Object on frustum boundary -->
+    <rect x="190" y="140" width="20" height="20" fill="#333" opacity="0.4" stroke="#333" stroke-width="1.5" />
+    <text x="200" y="155" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" font-weight="bold" fill="white">F</text>
+  </g>
+  
+  <!-- Legend and explanation -->
+  <g transform="translate(0, 420)">
+    <rect x="40" y="0" width="720" height="260" rx="15" ry="15" fill="#f0f0f0" opacity="0.9" />
+    <text x="400" y="30" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" font-weight="bold" fill="#333">View Frustum Culling Explained</text>
+    
+    <!-- Two column layout for legend -->
+    <g transform="translate(80, 50)">
+      <!-- Left column -->
+      <rect x="0" y="0" width="20" height="20" fill="rgba(114, 46, 209, 0.2)" stroke="#722ed1" stroke-width="2" rx="3" ry="3" />
+      <text x="30" y="15" font-family="Arial, sans-serif" font-size="14" fill="#333">View Frustum - The 3D volume visible to the camera</text>
+      
+      <rect x="0" y="30" width="20" height="20" fill="#52c41a" stroke="#333" stroke-width="1.5" rx="3" ry="3" />
+      <text x="30" y="45" font-family="Arial, sans-serif" font-size="14" fill="#333">Visible Objects (A, B, C) - Fully inside frustum, sent to GPU</text>
+      
+      <!-- Right column -->
+      <rect x="0" y="60" width="20" height="20" fill="#fa8c16" opacity="0.3" stroke="#fa8c16" stroke-width="1.5" stroke-dasharray="4,2" rx="3" ry="3" />
+      <text x="30" y="75" font-family="Arial, sans-serif" font-size="14" fill="#333">Culled Objects (D, E) - Outside frustum, not processed</text>
+      
+      <rect x="0" y="90" width="20" height="20" fill="#333" opacity="0.4" stroke="#333" stroke-width="1.5" rx="3" ry="3" />
+      <text x="30" y="105" font-family="Arial, sans-serif" font-size="14" fill="#333">Partially Visible (F) - Intersects frustum, requires clipping</text>
+      
+      <circle cx="10" cy="130" r="8" fill="#722ed1" stroke="#333" stroke-width="1.5" />
+      <text x="30" y="135" font-family="Arial, sans-serif" font-size="14" fill="#333">Camera - Origin point of the view frustum</text>
+    </g>
+    
+    <rect x="100" y="210" width="600" height="2" fill="#333" opacity="0.2" />
+    <text x="400" y="240" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-style="italic" fill="#333">Frustum culling prevents sending geometry to the GPU that would be clipped or outside the view</text>
+  </g>
+</svg>
