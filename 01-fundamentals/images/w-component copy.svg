@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 680">
+  <rect width="600" height="680" fill="#27008b" rx="10" ry="10"/>
+
+  <text x="300" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#fff">The W-Component Magic</text>
+
+  <g transform="translate(300, 110)">
+    <rect x="-250" y="-35" width="500" height="100" rx="10" ry="10" fill="#e6f5ff" stroke="#1677ff" stroke-width="2"/>
+    <text x="0" y="-5" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#333">
+      Homogeneous Coordinates: (x, y, z, w)
+    </text>
+    <text x="0" y="25" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#666">
+After vertex shader, GPU divides x, y, z components by w →
+    </text>
+
+     <text x="-170" y="45" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#666">
+→ (x/w, y/w, z/w)
+    </text>
+  </g>
+
+  <g transform="translate(300, 350)">
+    <rect x="-280" y="-190" width="250" height="380" rx="15" ry="15" fill="#e6f5ff" stroke="#1677ff" stroke-width="3"/>
+    <text x="-155" y="-150" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1677ff">CLIP SPACE</text>
+    <text x="-155" y="-120" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#666">(Before Division)</text>
+
+    <g transform="translate(-155, -70)">
+      <rect x="-60" y="-30" width="120" height="60" fill="#1677ff" fill-opacity="0.6" stroke="#1677ff" stroke-width="2"/>
+      <text x="0" y="-5" font-family="monospace" font-size="18" font-weight="bold" text-anchor="middle" fill="white">w = 2.0</text>
+      <text x="0" y="15" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">Far Away</text>
+    </g>
+
+    <g transform="translate(-155, 30)">
+      <rect x="-60" y="-30" width="120" height="60" fill="#1677ff" fill-opacity="0.8" stroke="#1677ff" stroke-width="2"/>
+      <text x="0" y="-5" font-family="monospace" font-size="18" font-weight="bold" text-anchor="middle" fill="white">w = 1.0</text>
+      <text x="0" y="15" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">Middle</text>
+    </g>
+
+    <g transform="translate(-155, 130)">
+      <rect x="-60" y="-30" width="120" height="60" fill="#1677ff" stroke="#1677ff" stroke-width="2"/>
+      <text x="0" y="-5" font-family="monospace" font-size="18" font-weight="bold" text-anchor="middle" fill="white">w = 0.5</text>
+      <text x="0" y="15" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">Close</text>
+    </g>
+
+    <g transform="translate(0, 0)">
+      <circle cx="0" cy="0" r="35" fill="#be0303"/>
+      <text x="0" y="7" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="white">÷ w</text>
+    </g>
+
+    <rect x="30" y="-190" width="250" height="380" rx="15" ry="15" fill="#f6ffed" stroke="#52c41a" stroke-width="3"/>
+    <text x="155" y="-150" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#52c41a">NDC SPACE</text>
+    <text x="155" y="-120" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#666">(After Division)</text>
+
+    <g transform="translate(135, -70)">
+      <rect x="-60" y="-30" width="150" height="60" fill="#52c41a" fill-opacity="0.6" stroke="#52c41a" stroke-width="2"/>
+      <text x="0" y="-5" font-family="monospace" font-size="18" font-weight="bold" text-anchor="middle" fill="white">x/2, y/2</text>
+      <text x="0" y="19" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">Small</text>
+    </g>
+
+    <g transform="translate(135, 30)">
+      <rect x="-60" y="-30" width="150" height="60" fill="#52c41a" fill-opacity="0.8" stroke="#52c41a" stroke-width="2"/>
+      <text x="0" y="-5" font-family="monospace" font-size="18" font-weight="bold" text-anchor="middle" fill="white">x/1, y/1</text>
+      <text x="0" y="19" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">Medium</text>
+    </g>
+
+    <g transform="translate(135, 130)">
+      <rect x="-60" y="-30" width="150" height="60" fill="#52c41a" stroke="#52c41a" stroke-width="2"/>
+      <text x="20" y="-5" font-family="monospace" font-size="18" font-weight="bold" text-anchor="middle" fill="white">x/0.5, y/0.5</text>
+      <text x="0" y="19" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">Large</text>
+    </g>
+  </g>
+
+  <g transform="translate(300, 560)">
+    <rect x="-250" y="-35" width="500" height="100" rx="10" ry="10" fill="#f0f0f0" stroke="#d9d9d9" stroke-width="2"/>
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#333">
+      Key Insight:
+    </text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#333">
+      • Small w = Large Size (closer objects)
+    </text>
+    <text x="0" y="50" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#333">
+      • Large w = Small Size (distant objects)
+    </text>
+  </g>
+
+</svg>
