@@ -4,6 +4,8 @@
 
 WebGL applications must transform vertices through several coordinate spaces before rendering. Each space serves a specific purpose in the pipeline:
 
+![WebGL Coordinate Spaces Journey](./images/spaces.svg)
+
 ### Model Space (Object Space)
 
 -   The local coordinate system of individual 3D models
@@ -52,6 +54,8 @@ WebGL applications must transform vertices through several coordinate spaces bef
 ## Homogeneous Coordinates: Definition
 
 Homogeneous coordinates are a coordinate system used in projective geometry that extends the conventional Cartesian coordinate system by adding one extra coordinate. For 3D graphics:
+
+![The W-Component Magic](./images/w-component%20copy.svg)
 
 -   A 3D point in Cartesian coordinates (x, y, z) is represented as a 4D point (x', y', z', w) in homogeneous coordinates
 -   The relationship between these coordinates is defined as:
@@ -174,6 +178,8 @@ Note that these boundaries depend on the w-component, which is why proper handli
 ## The View Frustum
 
 The view frustum is a 3D volume that defines the visible portion of your 3D scene:
+
+![View Frustum and Frustum Culling](./images/frustum.svg)
 
 -   For **perspective projection**: It's shaped like a truncated pyramid (narrower near the camera, wider farther away)
 -   For **orthographic projection**: It's a rectangular box (same width near and far)
@@ -310,6 +316,8 @@ gl.cullFace(gl.FRONT_AND_BACK); // Cull both (wireframe mode)
 ## Transformation Matrices
 
 Coordinate transformations are typically performed using matrix multiplication:
+
+![WebGL Matrix Transformation Pipeline](./images/matrix-transformation.svg)
 
 ### Model Matrix
 
