@@ -7,30 +7,82 @@
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <canvas id="webgl-canvas"></canvas>
-        <div id="pipeline-info">
-            <h1>WebGL Rendering Pipeline</h1>
-            <div class="pipeline-stage" id="js-stage">
-                <h3>1. JavaScript Setup</h3>
-                <code>const positions = new Float32Array([0.0, 0.5, -0.5, -0.5, 0.5, -0.5]);</code>
+        <div class="container">
+            <div class="canvas-container">
+                <canvas id="webgl-canvas"></canvas>
+                <div id="visualization-overlay"></div>
             </div>
-            <div class="pipeline-stage" id="buffer-stage">
-                <h3>2. Buffer Data Transfer</h3>
-                <code>gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);</code>
-            </div>
-            <div class="pipeline-stage" id="vertex-stage">
-                <h3>3. Vertex Shader</h3>
-                <code>gl_Position = vec4(position, 0.0, 1.0);</code>
-            </div>
-            <div class="pipeline-stage" id="assembly-stage">
-                <h3>4. Primitive Assembly</h3>
-                <code>gl.drawArrays(gl.TRIANGLES, 0, 3);</code>
-            </div>
-            <div class="pipeline-stage" id="fragment-stage">
-                <h3>5. Fragment Shader</h3>
-                <code>gl_FragColor = vec4(fragPos, 0.5, 1.0);</code>
+
+            <div id="pipeline-info">
+                <h1>WebGL Rendering Pipeline</h1>
+
+                <div class="controls">
+                    <button id="prev-stage">Previous Stage</button>
+                    <button id="next-stage">Next Stage</button>
+                    <div class="toggle-controls">
+                        <label><input type="checkbox" id="toggle-wireframe" /> Wireframe</label>
+                        <label><input type="checkbox" id="toggle-backface" checked /> Backface Culling</label>
+                        <label><input type="checkbox" id="toggle-points" /> Show Vertices</label>
+                    </div>
+                    <div class="primitive-controls">
+                        <label><input type="radio" name="primitive" value="triangles" checked /> Triangles</label>
+                        <label><input type="radio" name="primitive" value="lines" /> Lines</label>
+                        <label><input type="radio" name="primitive" value="points" /> Points</label>
+                    </div>
+                </div>
+
+                <div class="pipeline-stages">
+                    <div class="pipeline-stage" id="js-stage" data-stage="0">
+                        <h3>1. JavaScript Setup</h3>
+                        <p>Application defines vertex data and WebGL configuration.</p>
+                        <code>const positions = new Float32Array([0.0, 0.5, -0.5, -0.5, 0.5, -0.5]);</code>
+                    </div>
+
+                    <div class="pipeline-stage" id="buffer-stage" data-stage="1">
+                        <h3>2. Buffer Data Transfer</h3>
+                        <p>Vertex data is transferred from CPU to GPU memory.</p>
+                        <code>gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);</code>
+                    </div>
+
+                    <div class="pipeline-stage" id="vertex-stage" data-stage="2">
+                        <h3>3. Vertex Shader</h3>
+                        <p>Each vertex is processed independently, transforming positions to clip space.</p>
+                        <code
+                            >attribute vec2 position; varying vec2 fragPos; void main() { gl_Position = vec4(position,
+                            0.0, 1.0); fragPos = position; }</code
+                        >
+                    </div>
+
+                    <div class="pipeline-stage" id="assembly-stage" data-stage="3">
+                        <h3>4. Primitive Assembly & Rasterization</h3>
+                        <p>Vertices are assembled into primitives and converted to fragments.</p>
+                        <code
+                            >// Primitive Assembly gl.drawArrays(gl.TRIANGLES, 0, 3); // Rasterization (Fixed function)
+                            // Converts primitives to fragments</code
+                        >
+                    </div>
+
+                    <div class="pipeline-stage" id="fragment-stage" data-stage="4">
+                        <h3>5. Fragment Shader</h3>
+                        <p>Each fragment is processed to determine its final color.</p>
+                        <code
+                            >precision mediump float; varying vec2 fragPos; void main() { gl_FragColor = vec4(fragPos.x
+                            + 0.5, fragPos.y + 0.5, 0.5, 1.0); }</code
+                        >
+                    </div>
+
+                    <div class="pipeline-stage" id="output-stage" data-stage="5">
+                        <h3>6. Fragment Operations & Output</h3>
+                        <p>Fragments undergo testing (depth, stencil) and are written to the framebuffer.</p>
+                        <code
+                            >// Fragment Operations gl.enable(gl.DEPTH_TEST); gl.enable(gl.CULL_FACE); // Final pixels
+                            written to framebuffer</code
+                        >
+                    </div>
+                </div>
             </div>
         </div>
+
         <script src="index.js"></script>
     </body>
 </html>
