@@ -12,6 +12,8 @@ JavaScript → GPU Buffers → Vertex Processing → Primitive Assembly → Rast
 
 Each stage performs a specific function in the transformation from data to visual output.
 
+<img src="../images/matrix-transformation.svg" alt="Matrix transformation in WebGL" width="600" />
+
 ## 1. Application Stage (JavaScript)
 
 The pipeline initiates in JavaScript code where the application:
