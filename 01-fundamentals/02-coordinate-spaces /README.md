@@ -4,6 +4,8 @@
 
 WebGL applications must transform vertices through several coordinate spaces before rendering. Each space serves a specific purpose in the pipeline:
 
+<img src="../images/spaces.svg" alt="WebGL Coordinate Spaces Journey" width="600" />
+
 ### Model Space (Object Space)
 
 -   The local coordinate system of individual 3D models
@@ -50,6 +52,8 @@ WebGL applications must transform vertices through several coordinate spaces bef
 -   Handled automatically by the GPU
 
 ## Homogeneous Coordinates: Definition
+
+<img src="../images/w-component.svg" alt="W-component in WebGL" width="600" />
 
 Homogeneous coordinates are a coordinate system used in projective geometry that extends the conventional Cartesian coordinate system by adding one extra coordinate. For 3D graphics:
 
@@ -174,6 +178,8 @@ Note that these boundaries depend on the w-component, which is why proper handli
 ## The View Frustum
 
 The view frustum is a 3D volume that defines the visible portion of your 3D scene:
+
+<img src="../images/frustum.svg" alt="Frustim in WebGL" width="600" />
 
 -   For **perspective projection**: It's shaped like a truncated pyramid (narrower near the camera, wider farther away)
 -   For **orthographic projection**: It's a rectangular box (same width near and far)
