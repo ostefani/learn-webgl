@@ -12,7 +12,7 @@ JavaScript → GPU Buffers → Vertex Processing → Primitive Assembly → Rast
 
 Each stage performs a specific function in the transformation from data to visual output.
 
-![WebGL Coordinate Spaces Journey](./images/spaces.svg)
+![WebGL Coordinate Spaces Journey](../images/spaces.svg)
 
 ## 1. Application Stage (JavaScript)
 
@@ -42,7 +42,7 @@ The `gl.STATIC_DRAW` parameter provides the GPU with a usage hint that optimizes
 
 Upon receiving a draw command, the GPU processes each vertex through the current vertex shader program:
 
-![WebGL Matrix Transformation Pipeline](./images/matrix-transformation.svg)
+![WebGL Matrix Transformation Pipeline](../images/matrix-transformation.svg)
 
 ```glsl
 attribute vec2 position;
@@ -81,7 +81,7 @@ This stage also performs:
 -   Back-face culling (optionally removing primitives facing away from the viewer)
 -   Primitive setup for rasterization
 
-![View Frustum and Frustum Culling](./images/frustum.svg)
+![View Frustum and Frustum Culling](../images/frustum.svg)
 
 ## 5. Rasterization
 
@@ -168,7 +168,7 @@ Tracing a single vertex through the pipeline in the provided triangle example:
 7. **Fragment Operations**: Default tests applied (no depth test in this example)
 8. **Framebuffer**: Fragment colors written to the canvas
 
-![The W-Component Magic](./images/w-component%20copy.svg)
+![The W-Component Magic](../images/w-component%20copy.svg)
 
 ## Pipeline Control Points
 
