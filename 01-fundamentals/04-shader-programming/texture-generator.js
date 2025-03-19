@@ -1,5 +1,5 @@
 /**
- * TextureGenerator Module - Creates procedural textures for WebGL
+ * TextureGenerator Module - Creates procedural textures for WebGL 2
  */
 const TextureGenerator = (function () {
     // Texture reference
@@ -7,7 +7,7 @@ const TextureGenerator = (function () {
 
     /**
      * Initialize a procedural texture
-     * @param {WebGLRenderingContext} gl - WebGL context
+     * @param {WebGL2RenderingContext} gl - WebGL 2 context
      */
     function initTexture(gl) {
         // Create a texture
@@ -40,8 +40,8 @@ const TextureGenerator = (function () {
             }
         }
 
-        // Upload the texture data
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, size, size, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+        // Upload the texture data - WebGL 2 preferred format
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, size, size, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
 
         // Set texture parameters
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);

@@ -44,11 +44,23 @@ window.onload = function () {
 function initWebGL() {
     canvas = document.getElementById('webgl-canvas');
 
-    // Try to get WebGL 2 context first, then fall back to WebGL 1
-    gl = canvas.getContext('webgl2') || canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    // Try to get WebGL 2 context
+    gl = canvas.getContext('webgl2');
 
     if (!gl) {
-        console.error('Unable to initialize WebGL. Your browser may not support it.');
+        console.error('Unable to initialize WebGL 2. Your browser may not support it.');
+        // Add a visible error message to the page
+        const errorMessage = document.createElement('div');
+        errorMessage.style.position = 'absolute';
+        errorMessage.style.top = '10px';
+        errorMessage.style.left = '10px';
+        errorMessage.style.color = 'red';
+        errorMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        errorMessage.style.padding = '10px';
+        errorMessage.style.borderRadius = '5px';
+        errorMessage.style.zIndex = '100';
+        errorMessage.textContent = 'WebGL 2 is not supported by your browser. This demo requires WebGL 2.';
+        document.body.appendChild(errorMessage);
         return;
     }
 

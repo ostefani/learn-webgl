@@ -5,39 +5,41 @@
  */
 
 // Basic shader program (for examples 1 and 2)
-const BASIC_VERTEX_SHADER = `
-attribute vec2 a_position;
-attribute vec3 a_color;
-varying vec3 v_color;
+const BASIC_VERTEX_SHADER = `#version 300 es
+in vec2 a_position;
+in vec3 a_color;
+out vec3 v_color;
 
 void main() {
     gl_Position = vec4(a_position, 0.0, 1.0);
     v_color = a_color;
 }`;
 
-const BASIC_FRAGMENT_SHADER = `
+const BASIC_FRAGMENT_SHADER = `#version 300 es
 precision mediump float;
-varying vec3 v_color;
+in vec3 v_color;
+out vec4 fragColor;
 
 void main() {
-    gl_FragColor = vec4(v_color, 1.0);
+    fragColor = vec4(v_color, 1.0);
 }`;
 
 // Uniform shader program (for example 3)
-const UNIFORM_VERTEX_SHADER = `
-attribute vec2 a_position;
-varying vec2 v_position;
+const UNIFORM_VERTEX_SHADER = `#version 300 es
+in vec2 a_position;
+out vec2 v_position;
 
 void main() {
     gl_Position = vec4(a_position, 0.0, 1.0);
     v_position = a_position;
 }`;
 
-const UNIFORM_FRAGMENT_SHADER = `
+const UNIFORM_FRAGMENT_SHADER = `#version 300 es
 precision mediump float;
-varying vec2 v_position;
+in vec2 v_position;
 uniform vec3 u_colorMultiplier;
 uniform float u_time;
+out vec4 fragColor;
 
 void main() {
     // Generate color based on position and time
@@ -48,5 +50,5 @@ void main() {
     );
     
     // Apply uniform color multiplier
-    gl_FragColor = vec4(color * u_colorMultiplier, 1.0);
+    fragColor = vec4(color * u_colorMultiplier, 1.0);
 }`;

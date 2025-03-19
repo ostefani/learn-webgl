@@ -1,5 +1,5 @@
 /**
- * GeometryManager Module - Handles WebGL buffer creation and management
+ * GeometryManager Module - Handles WebGL 2 buffer creation and management
  */
 const GeometryManager = (function () {
     // Buffer references
@@ -9,19 +9,27 @@ const GeometryManager = (function () {
     let texCoordBuffer;
     let indicesBuffer;
     let vertexCount;
+    let vao; // Vertex Array Object for WebGL 2
 
     /**
      * Initialize geometry buffers
-     * @param {WebGLRenderingContext} gl - WebGL context
+     * @param {WebGL2RenderingContext} gl - WebGL 2 context
      */
     function initBuffers(gl) {
+        // Create a Vertex Array Object
+        vao = gl.createVertexArray();
+        gl.bindVertexArray(vao);
+
         // Create a cube geometry
         createCubeBuffers(gl);
+
+        // Unbind the VAO when done
+        gl.bindVertexArray(null);
     }
 
     /**
      * Create buffers for a cube geometry
-     * @param {WebGLRenderingContext} gl - WebGL context
+     * @param {WebGL2RenderingContext} gl - WebGL 2 context
      */
     function createCubeBuffers(gl) {
         // Vertex positions (x, y, z) for a cube centered at the origin with width 1
@@ -179,10 +187,13 @@ const GeometryManager = (function () {
 
     /**
      * Set up attribute pointers for a shader program
-     * @param {WebGLRenderingContext} gl - WebGL context
+     * @param {WebGL2RenderingContext} gl - WebGL 2 context
      * @param {WebGLProgram} program - Shader program
      */
     function setupAttributes(gl, program) {
+        // Bind the VAO first
+        gl.bindVertexArray(vao);
+
         // Position attribute
         const positionLocation = gl.getAttribLocation(program, 'a_position');
         if (positionLocation !== -1) {
@@ -214,15 +225,24 @@ const GeometryManager = (function () {
             gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
             gl.enableVertexAttribArray(texCoordLocation);
         }
+
+        // Bind the element array buffer
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indicesBuffer);
     }
 
     /**
      * Draw the geometry
-     * @param {WebGLRenderingContext} gl - WebGL context
+     * @param {WebGL2RenderingContext} gl - WebGL 2 context
      */
     function drawGeometry(gl) {
-        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indicesBuffer);
+        // Bind VAO - all attribute and element buffer bindings are remembered
+        gl.bindVertexArray(vao);
+
+        // Draw the elements
         gl.drawElements(gl.TRIANGLES, vertexCount, gl.UNSIGNED_SHORT, 0);
+
+        // Unbind VAO when done
+        gl.bindVertexArray(null);
     }
 
     // Public API
