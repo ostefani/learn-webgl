@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GLSL Shader Programming Examples</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <h1>GLSL Shader Programming</h1>
+            <p>Practical demonstrations of WebGL shader concepts</p>
+        </header>
+
+        <main>
+            <div class="shader-selector">
+                <label for="example-select">Select Example:</label>
+                <select id="example-select">
+                    <option value="basic">Basic Shader Structure</option>
+                    <option value="varying">Varying Variables & Interpolation</option>
+                    <option value="uniform">Uniform Parameters</option>
+                    <option value="lighting">Simple Diffuse Lighting</option>
+                    <option value="texture">Texture Mapping</option>
+                </select>
+            </div>
+
+            <div class="demo-container">
+                <div class="visualization">
+                    <canvas id="webgl-canvas"></canvas>
+                </div>
+
+                <div class="code-section">
+                    <div class="shader-code">
+                        <h2>Vertex Shader</h2>
+                        <pre id="vertex-shader-display"></pre>
+                    </div>
+                    <div class="shader-code">
+                        <h2>Fragment Shader</h2>
+                        <pre id="fragment-shader-display"></pre>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div id="basic-explanation" class="explanation-content">
+                        <h2>Basic Shader Structure</h2>
+                        <p>This example demonstrates the minimum required components of a WebGL shader program:</p>
+                        <ul>
+                            <li>
+                                <strong>Vertex Shader:</strong> Transforms input vertices to clip-space positions using
+                                <code>gl_Position</code>
+                            </li>
+                            <li>
+                                <strong>Fragment Shader:</strong> Sets a constant color for all fragments using
+                                <code>gl_FragColor</code>
+                            </li>
+                            <li>
+                                <strong>Precision Qualifier:</strong> <code>precision mediump float;</code> sets the
+                                floating-point precision
+                            </li>
+                        </ul>
+                        <p>Key concepts demonstrated:</p>
+                        <ul>
+                            <li>The mandatory <code>attribute</code> qualifier for vertex input data</li>
+                            <li>The required <code>gl_Position</code> output in the vertex shader</li>
+                            <li>The required <code>gl_FragColor</code> output in the fragment shader</li>
+                        </ul>
+                    </div>
+
+                    <div id="varying-explanation" class="explanation-content">
+                        <h2>Varying Variables & Interpolation</h2>
+                        <p>This example demonstrates how to pass data from the vertex shader to the fragment shader:</p>
+                        <ul>
+                            <li><strong>Attribute:</strong> Per-vertex color data is provided as an attribute</li>
+                            <li>
+                                <strong>Varying:</strong> The <code>varying</code> qualifier creates a variable that
+                                passes from vertex to fragment shader
+                            </li>
+                            <li>
+                                <strong>Interpolation:</strong> WebGL automatically interpolates varying values across
+                                the face of primitives
+                            </li>
+                        </ul>
+                        <p>Key concepts demonstrated:</p>
+                        <ul>
+                            <li>Declaration of matching varying variables in both shader stages</li>
+                            <li>Automatic perspective-correct interpolation of varying values</li>
+                            <li>Using multiple attributes (position and color) per vertex</li>
+                        </ul>
+                    </div>
+
+                    <div id="uniform-explanation" class="explanation-content">
+                        <h2>Uniform Parameters</h2>
+                        <p>This example demonstrates how to pass global values from JavaScript to shaders:</p>
+                        <ul>
+                            <li>
+                                <strong>Uniform Variables:</strong> Global values that remain constant for all vertices
+                                in a draw call
+                            </li>
+                            <li>
+                                <strong>Matrix Transformation:</strong> Using a uniform matrix to transform vertices
+                            </li>
+                            <li><strong>Animation:</strong> Using time uniform to create dynamic visual effects</li>
+                        </ul>
+                        <p>Key concepts demonstrated:</p>
+                        <ul>
+                            <li>The <code>uniform</code> qualifier for global shader parameters</li>
+                            <li>Setting uniform values from JavaScript with <code>gl.uniformXXX()</code> functions</li>
+                            <li>Using uniform values to create time-based animations</li>
+                            <li>Matrix mathematics for 3D transformations</li>
+                        </ul>
+                    </div>
+
+                    <div id="lighting-explanation" class="explanation-content">
+                        <h2>Simple Diffuse Lighting</h2>
+                        <p>This example implements a basic diffuse lighting model:</p>
+                        <ul>
+                            <li><strong>Normal Vectors:</strong> Surface normals provided as vertex attributes</li>
+                            <li><strong>View Space:</strong> Lighting calculations performed in view space</li>
+                            <li>
+                                <strong>Diffuse Reflection:</strong> Light intensity based on the dot product of normal
+                                and light direction
+                            </li>
+                        </ul>
+                        <p>Key concepts demonstrated:</p>
+                        <ul>
+                            <li>Transformation of normal vectors using the normal matrix</li>
+                            <li>Vector mathematics (normalization, dot product) for lighting</li>
+                            <li>Ambient and diffuse lighting components</li>
+                            <li>Light position as a uniform parameter</li>
+                        </ul>
+                    </div>
+
+                    <div id="texture-explanation" class="explanation-content">
+                        <h2>Texture Mapping</h2>
+                        <p>This example demonstrates how to apply a texture to a 3D object:</p>
+                        <ul>
+                            <li>
+                                <strong>Texture Coordinates:</strong> Per-vertex UV coordinates provided as attributes
+                            </li>
+                            <li>
+                                <strong>Sampler:</strong> The <code>sampler2D</code> uniform type for accessing texture
+                                data
+                            </li>
+                            <li>
+                                <strong>Texture Lookup:</strong> Using <code>texture2D()</code> to sample colors from
+                                the texture
+                            </li>
+                        </ul>
+                        <p>Key concepts demonstrated:</p>
+                        <ul>
+                            <li>Passing texture coordinates from vertex to fragment shader</li>
+                            <li>Binding a WebGL texture to a sampler uniform</li>
+                            <li>Sampling texture data using interpolated coordinates</li>
+                            <li>Texture parameter configuration (filtering, wrapping)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="shader-sources.js"></script>
+        <script src="matrix.js"></script>
+        <script src="geometry.js"></script>
+        <script src="texture-generator.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
