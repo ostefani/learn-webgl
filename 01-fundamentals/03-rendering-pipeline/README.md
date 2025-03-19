@@ -73,9 +73,13 @@ Vertex shaders operate independently for each vertex, enabling parallel executio
 
 ## 4. Transform Feedback (WebGL 2 Feature)
 
-WebGL 2 introduces transform feedback, which allows capturing vertex shader outputs before rasterization:
+WebGL 2 introduces transform feedback, which allows capturing vertex shader outputs before rasterization and storing them directly in GPU buffers. This creates a pathway to preserve and reuse vertex processing results without CPU intervention.
 
 ```js
+// Specify which vertex shader outputs to capture
+gl.transformFeedbackVaryings(program, ['position', 'velocity'], gl.SEPARATE_ATTRIBS);
+gl.linkProgram(program); // Must relink after setting varyings
+
 // Set up transform feedback buffer
 const feedbackBuffer = gl.createBuffer();
 gl.bindBuffer(gl.TRANSFORM_FEEDBACK_BUFFER, feedbackBuffer);
@@ -92,12 +96,17 @@ gl.drawArrays(gl.TRIANGLES, 0, vertexCount);
 gl.endTransformFeedback();
 ```
 
+The key advantage is eliminating costly GPU-to-CPU-to-GPU data transfers when you need to reuse vertex processing results. When you need to modify vertices and then render them repeatedly (like in animations or simulations), Transform Feedback allows this cycle to stay entirely on the GPU.
+
 This feature enables:
 
--   GPU-based particle systems
--   Physics calculations
--   Mesh deformation without CPU intervention
--   On-GPU data generation
+-   **GPU-based particle systems**: Update thousands of particle positions and velocities entirely on the GPU
+-   **Physics calculations**: Perform simulations like cloth, fluid, or soft-body dynamics on the GPU
+-   **Procedural animation**: Animate complex meshes by calculating new vertex positions in the shader
+-   **Mesh deformation**: Apply complex deformations without CPU intervention
+-   **On-GPU data generation**: Generate new geometry from simpler input data
+
+Transform Feedback is particularly valuable for applications that need to continuously update and reuse vertex data across multiple frames or rendering passes.
 
 ## 5. Primitive Assembly
 
