@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>WebGL Rendering Pipeline</title>
+        <title>WebGL 2 Rendering Pipeline</title>
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
@@ -14,7 +14,7 @@
             </div>
 
             <div id="pipeline-info">
-                <h1>WebGL Rendering Pipeline</h1>
+                <h1>WebGL 2 Rendering Pipeline</h1>
 
                 <div class="controls">
                     <button id="prev-stage">Previous Stage</button>
@@ -48,8 +48,8 @@
                         <h3>3. Vertex Shader</h3>
                         <p>Each vertex is processed independently, transforming positions to clip space.</p>
                         <code
-                            >attribute vec2 position; varying vec2 fragPos; void main() { gl_Position = vec4(position,
-                            0.0, 1.0); fragPos = position; }</code
+                            >#version 300 es in vec2 position; out vec2 fragPos; void main() { gl_Position =
+                            vec4(position, 0.0, 1.0); fragPos = position; }</code
                         >
                     </div>
 
@@ -66,8 +66,8 @@
                         <h3>5. Fragment Shader</h3>
                         <p>Each fragment is processed to determine its final color.</p>
                         <code
-                            >precision mediump float; varying vec2 fragPos; void main() { gl_FragColor = vec4(fragPos.x
-                            + 0.5, fragPos.y + 0.5, 0.5, 1.0); }</code
+                            >#version 300 es precision mediump float; in vec2 fragPos; out vec4 fragColor; void main() {
+                            fragColor = vec4(fragPos.x + 0.5, fragPos.y + 0.5, 0.5, 1.0); }</code
                         >
                     </div>
 

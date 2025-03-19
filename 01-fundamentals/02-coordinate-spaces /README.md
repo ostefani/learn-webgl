@@ -337,11 +337,12 @@ Coordinate transformations are typically performed using matrix multiplication:
 ### Combined Transformation
 
 ```glsl
+#version 300 es
 // Vertex shader
 uniform mat4 uModelMatrix;
 uniform mat4 uViewMatrix;
 uniform mat4 uProjectionMatrix;
-attribute vec3 aPosition;
+in vec3 aPosition;
 
 void main() {
   // Complete transformation pipeline
@@ -352,8 +353,9 @@ void main() {
 ## Practical Example: Visualizing Clip Space
 
 ```glsl
+#version 300 es
 // Vertex shader demonstrating clip space
-attribute vec3 aPosition;  // Model space position
+in vec3 aPosition;  // Model space position
 uniform mat4 uMVP;         // Combined model-view-projection matrix
 
 void main() {

@@ -13,11 +13,11 @@ class PipelineVisualization {
         // Set up canvas
         this.canvas.width = this.canvas.clientWidth;
         this.canvas.height = this.canvas.clientHeight;
-        this.gl = this.canvas.getContext('webgl');
+        this.gl = this.canvas.getContext('webgl2');
 
         if (!this.gl) {
-            alert('WebGL not supported');
-            throw new Error('WebGL not supported');
+            alert('WebGL 2 not supported');
+            throw new Error('WebGL 2 not supported');
         }
 
         // Set up UI controls
@@ -84,12 +84,12 @@ class PipelineVisualization {
         gl.enable(gl.DEPTH_TEST);
 
         // VERTEX SHADER
-        const vertexShaderSource = `
+        const vertexShaderSource = `#version 300 es
         // Input: vertex position
-        attribute vec2 position;
+        in vec2 position;
         
         // Output: data to fragment shader
-        varying vec2 fragPos;
+        out vec2 fragPos;
         
         void main() {
           // Stage 3: Vertex Processing
@@ -103,16 +103,19 @@ class PipelineVisualization {
       `;
 
         // FRAGMENT SHADER
-        const fragmentShaderSource = `
+        const fragmentShaderSource = `#version 300 es
         precision mediump float;
         
         // Input: interpolated data from vertex shader
-        varying vec2 fragPos;
+        in vec2 fragPos;
+        
+        // Output: fragment color
+        out vec4 fragColor;
         
         void main() {
           // Stage 5: Fragment Processing
           // Map position to color (x => red, y => green)
-          gl_FragColor = vec4(fragPos.x + 0.5, fragPos.y + 0.5, 0.5, 1.0);
+          fragColor = vec4(fragPos.x + 0.5, fragPos.y + 0.5, 0.5, 1.0);
         }
       `;
 
@@ -148,10 +151,17 @@ class PipelineVisualization {
         gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, this.positions, gl.STATIC_DRAW);
 
+        // Create a vertex array object (VAO) - WebGL 2 feature
+        this.vao = gl.createVertexArray();
+        gl.bindVertexArray(this.vao);
+
         // Connect position buffer to shader attribute
         this.positionLocation = gl.getAttribLocation(this.program, 'position');
         gl.enableVertexAttribArray(this.positionLocation);
         gl.vertexAttribPointer(this.positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+        // Unbind the VAO
+        gl.bindVertexArray(null);
     }
 
     createShader(type, source) {
@@ -450,6 +460,9 @@ class PipelineVisualization {
                 break;
         }
 
+        // Bind the VAO before drawing
+        gl.bindVertexArray(this.vao);
+
         // Draw based on current stage
         if (this.currentStage >= 3) {
             // Stage 4 and beyond: Draw the primitive
@@ -460,6 +473,9 @@ class PipelineVisualization {
         if (this.showPoints && this.currentStage >= 2) {
             gl.drawArrays(gl.POINTS, 0, 3);
         }
+
+        // Unbind the VAO
+        gl.bindVertexArray(null);
     }
 }
 

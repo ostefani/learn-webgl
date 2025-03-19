@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>WebGL Coordinate Spaces Visualization</title>
+        <title>WebGL 2 Coordinate Spaces Visualization</title>
         <style>
             body {
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -114,6 +114,18 @@
             .z-axis {
                 color: #5555ff;
             }
+            .webgl-error {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(255, 0, 0, 0.8);
+                color: white;
+                padding: 20px;
+                border-radius: 5px;
+                text-align: center;
+                max-width: 80%;
+            }
         </style>
     </head>
     <body>
@@ -124,10 +136,10 @@
             </div>
             <div class="controls">
                 <div class="control-group">
-                    <h1>WebGL Coordinate Spaces Demo</h1>
+                    <h1>WebGL 2 Coordinate Spaces Demo</h1>
                     <p>
                         This demo visualizes how 3D models are transformed through different coordinate spaces in the
-                        WebGL pipeline.
+                        WebGL 2 pipeline.
                     </p>
                 </div>
 
@@ -528,18 +540,18 @@
                 },
             };
 
-            // WebGL code
-            const vertexShaderSource = `
-      attribute vec4 aPosition;
-      attribute vec4 aColor;
+            // WebGL 2 shader code
+            const vertexShaderSource = `#version 300 es
+      in vec4 aPosition;
+      in vec4 aColor;
       
       uniform mat4 uModelMatrix;
       uniform mat4 uViewMatrix;
       uniform mat4 uProjectionMatrix;
       uniform int uCoordinateSpace;
       
-      varying vec4 vColor;
-      varying float vClipW;
+      out vec4 vColor;
+      out float vClipW;
       
       void main() {
         // Calculate positions in different coordinate spaces
@@ -573,25 +585,35 @@
       }
     `;
 
-            const fragmentShaderSource = `
+            const fragmentShaderSource = `#version 300 es
       precision mediump float;
       
-      varying vec4 vColor;
-      varying float vClipW;
+      in vec4 vColor;
+      in float vClipW;
+      
+      out vec4 fragColor;
       
       void main() {
-        gl_FragColor = vColor;
+        fragColor = vColor;
       }
     `;
 
             // Main program
             window.onload = function () {
-                // WebGL context setup
+                // WebGL 2 context setup
                 const canvas = document.getElementById('glCanvas');
-                const gl = canvas.getContext('webgl');
+                const gl = canvas.getContext('webgl2');
 
                 if (!gl) {
-                    alert('WebGL not supported in your browser!');
+                    // Create an error message if WebGL 2 is not supported
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'webgl-error';
+                    errorDiv.innerHTML = `
+                        <h2>WebGL 2 Not Supported</h2>
+                        <p>Your browser does not support WebGL 2, which is required for this demo.</p>
+                        <p>Please try a recent version of Chrome, Firefox, or Edge.</p>
+                    `;
+                    document.querySelector('.canvas-container').appendChild(errorDiv);
                     return;
                 }
 
@@ -856,27 +878,63 @@
                     5, // Z axis
                 ];
 
-                // Buffer setup
-                function createBuffer(data, type) {
-                    const buffer = gl.createBuffer();
-                    gl.bindBuffer(type, buffer);
-                    gl.bufferData(type, data, gl.STATIC_DRAW);
-                    return buffer;
-                }
+                // Create VAOs and buffer setup
+                // Cube VAO
+                const cubeVAO = gl.createVertexArray();
+                gl.bindVertexArray(cubeVAO);
 
-                // Cube buffers
-                const cubeVertexBuffer = createBuffer(new Float32Array(cubeVertices), gl.ARRAY_BUFFER);
-                const cubeIndexBuffer = createBuffer(new Uint16Array(cubeIndices), gl.ELEMENT_ARRAY_BUFFER);
+                const cubeVertexBuffer = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexBuffer);
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(cubeVertices), gl.STATIC_DRAW);
+
+                gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 7 * 4, 0);
+                gl.enableVertexAttribArray(aPosition);
+                gl.vertexAttribPointer(aColor, 4, gl.FLOAT, false, 7 * 4, 3 * 4);
+                gl.enableVertexAttribArray(aColor);
+
+                const cubeIndexBuffer = gl.createBuffer();
+                gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIndexBuffer);
+                gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeIndices), gl.STATIC_DRAW);
+
+                // Clip cube VAO
+                const clipCubeVAO = gl.createVertexArray();
+                gl.bindVertexArray(clipCubeVAO);
+
+                const clipCubeVertexBuffer = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, clipCubeVertexBuffer);
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(clipCubeVertices), gl.STATIC_DRAW);
+
+                gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 7 * 4, 0);
+                gl.enableVertexAttribArray(aPosition);
+                gl.vertexAttribPointer(aColor, 4, gl.FLOAT, false, 7 * 4, 3 * 4);
+                gl.enableVertexAttribArray(aColor);
+
+                const clipCubeIndexBuffer = gl.createBuffer();
+                gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, clipCubeIndexBuffer);
+                gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(clipCubeIndices), gl.STATIC_DRAW);
+
+                // Axes VAO
+                const axesVAO = gl.createVertexArray();
+                gl.bindVertexArray(axesVAO);
+
+                const axesVertexBuffer = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, axesVertexBuffer);
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(axesVertices), gl.STATIC_DRAW);
+
+                gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 7 * 4, 0);
+                gl.enableVertexAttribArray(aPosition);
+                gl.vertexAttribPointer(aColor, 4, gl.FLOAT, false, 7 * 4, 3 * 4);
+                gl.enableVertexAttribArray(aColor);
+
+                const axesIndexBuffer = gl.createBuffer();
+                gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, axesIndexBuffer);
+                gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(axesIndices), gl.STATIC_DRAW);
+
+                // Unbind the VAO
+                gl.bindVertexArray(null);
+
                 const cubeVertexCount = cubeIndices.length;
-
-                // Clip cube buffers
-                const clipCubeVertexBuffer = createBuffer(new Float32Array(clipCubeVertices), gl.ARRAY_BUFFER);
-                const clipCubeIndexBuffer = createBuffer(new Uint16Array(clipCubeIndices), gl.ELEMENT_ARRAY_BUFFER);
                 const clipCubeVertexCount = clipCubeIndices.length;
-
-                // Axes buffers
-                const axesVertexBuffer = createBuffer(new Float32Array(axesVertices), gl.ARRAY_BUFFER);
-                const axesIndexBuffer = createBuffer(new Uint16Array(axesIndices), gl.ELEMENT_ARRAY_BUFFER);
                 const axesVertexCount = axesIndices.length;
 
                 // State and UI controls
@@ -1099,44 +1157,31 @@
                         matrixDisplay.textContent = 'NDC Space (after perspective division)';
                     }
 
-                    // Draw methods
-                    function drawArrays(vertexBuffer, indexBuffer, vertexCount, drawMode) {
-                        // Bind vertex buffer
-                        gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-
-                        // Set up attribute pointers
-                        gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 7 * 4, 0);
-                        gl.enableVertexAttribArray(aPosition);
-
-                        gl.vertexAttribPointer(aColor, 4, gl.FLOAT, false, 7 * 4, 3 * 4);
-                        gl.enableVertexAttribArray(aColor);
-
-                        // Bind index buffer
-                        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-
-                        // Draw
-                        gl.drawElements(drawMode, vertexCount, gl.UNSIGNED_SHORT, 0);
-                    }
-
                     // Draw clip volume (NDC cube)
                     if (state.showClipVolume) {
-                        drawArrays(clipCubeVertexBuffer, clipCubeIndexBuffer, clipCubeVertexCount, gl.LINES);
+                        gl.bindVertexArray(clipCubeVAO);
+                        gl.drawElements(gl.LINES, clipCubeVertexCount, gl.UNSIGNED_SHORT, 0);
                     }
 
                     // Draw cube
                     if (state.showCube) {
-                        drawArrays(
-                            cubeVertexBuffer,
-                            cubeIndexBuffer,
+                        gl.bindVertexArray(cubeVAO);
+                        gl.drawElements(
+                            state.wireframe ? gl.LINE_LOOP : gl.TRIANGLES,
                             cubeVertexCount,
-                            state.wireframe ? gl.LINE_LOOP : gl.TRIANGLES
+                            gl.UNSIGNED_SHORT,
+                            0
                         );
                     }
 
                     // Draw axes
                     if (state.showAxes) {
-                        drawArrays(axesVertexBuffer, axesIndexBuffer, axesVertexCount, gl.LINES);
+                        gl.bindVertexArray(axesVAO);
+                        gl.drawElements(gl.LINES, axesVertexCount, gl.UNSIGNED_SHORT, 0);
                     }
+
+                    // Unbind VAO after drawing
+                    gl.bindVertexArray(null);
 
                     // Request next frame
                     requestAnimationFrame(render);
