@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WebGL 2 Data Flow Examples</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <h1>WebGL 2 Data Flow: CPU-GPU Communication</h1>
+            <p>Demonstrations of key data transfer mechanisms in WebGL 2</p>
+        </header>
+
+        <main>
+            <section class="example-card">
+                <h2>1. Basic Buffer Data Transfer with VAOs</h2>
+                <p>A triangle with each vertex rendered in a different color</p>
+                <div class="demo-canvas">
+                    <canvas id="basic-example" width="400" height="300"></canvas>
+                </div>
+                <div class="technique">
+                    <h3>Technique Demonstrated:</h3>
+                    <p>This example shows the fundamental WebGL 2 data flow pattern:</p>
+                    <ol>
+                        <li>JavaScript arrays (positions, colors) created in CPU memory</li>
+                        <li>Vertex Array Object (VAO) created to store attribute state</li>
+                        <li>Buffer objects created and bound to appropriate targets</li>
+                        <li>Data transferred to GPU memory with bufferData()</li>
+                        <li>Attributes configured to read from buffers with vertexAttribPointer()</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="example-card">
+                <h2>2. Interleaved Buffer Data</h2>
+                <p>The same triangle but using an interleaved vertex data format</p>
+                <div class="demo-canvas">
+                    <canvas id="interleaved-example" width="400" height="300"></canvas>
+                </div>
+                <div class="technique">
+                    <h3>Technique Demonstrated:</h3>
+                    <p>This example demonstrates interleaved buffer organization with WebGL 2 VAOs:</p>
+                    <ol>
+                        <li>A single buffer containing both position and color data</li>
+                        <li>Data organized as [x,y,r,g,b, x,y,r,g,b, ...]</li>
+                        <li>Stride and offset parameters used to access elements</li>
+                        <li>VAO encapsulates all attribute bindings for efficient state management</li>
+                        <li>Improved memory locality and state change reduction</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="example-card">
+                <h2>3. Uniform Data Transfer</h2>
+                <p>A triangle with a rotating color effect controlled by uniforms</p>
+                <div class="demo-canvas">
+                    <canvas id="uniform-example" width="400" height="300"></canvas>
+                </div>
+                <div class="technique">
+                    <h3>Technique Demonstrated:</h3>
+                    <p>This example shows uniform data transfer in WebGL 2:</p>
+                    <ol>
+                        <li>JavaScript calculates time-based color values</li>
+                        <li>Values transferred directly to shader uniform variables</li>
+                        <li>Uniform values affect all vertices in the same draw call</li>
+                        <li>No buffer required for per-draw-call data</li>
+                        <li>Uses WebGL 2 explicit fragment shader outputs</li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+
+        <script src="index.js"></script>
+    </body>
+</html>
