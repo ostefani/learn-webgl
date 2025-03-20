@@ -54,8 +54,28 @@ uniform sampler2D uDiffuseMap;
 out vec4 fragColor;
 
 void main() {
-    // Material properties
-    vec3 diffuseColor = texture(uDiffuseMap, vTexCoord).rgb;
+    // Spot pattern
+    float gridSize = 10.0;                // 10 spots across each texture coordinate axis
+    vec2 cell = floor(vTexCoord * gridSize); // Integer grid cell coordinates
+    vec2 grid = fract(vTexCoord * gridSize); // Fractional position within the cell
+    float dist = length(grid - vec2(0.5));   // Distance to cell center
+    float radius = 0.1;                   // Spot radius (0.2 of cell size)
+    float spot = dist < radius ? 1.0 : 0.0;  // 1.0 inside spot, 0.0 outside
+
+    // Compute spot color
+    int ix = int(cell.x);                 // Integer x-coordinate of the cell
+    int iy = int(cell.y);                 // Integer y-coordinate of the cell
+    int index = (ix + iy) % 3;            // Cycle through 0, 1, 2 for colors
+    vec3 spotColor;
+
+    spotColor = vec3(.0, 0.0, 0.0);
+
+    // Base color: blend texture color with spot color
+    vec3 textureColor = texture(uDiffuseMap, vTexCoord).rgb;
+    vec3 baseColor = mix(textureColor, spotColor, spot);
+
+    // Use baseColor as diffuseColor
+    vec3 diffuseColor = baseColor;
     vec3 ambientColor = diffuseColor * 0.2;
     vec3 specularColor = vec3(1.0);
     float shininess = 32.0;
@@ -87,8 +107,7 @@ void main() {
     vec3 result = ambient + (diffuse + specular) * attenuation;
     
     fragColor = vec4(result, 1.0);
-}
-`;
+}`;
 
 // Normal Mapping Shaders
 const normalMapVertexShader = `#version 300 es
@@ -155,7 +174,21 @@ out vec4 fragColor;
 
 void main() {
     // Sample textures
-    vec3 diffuseColor = texture(uDiffuseMap, vTexCoord).rgb;
+    vec3 textureColor = texture(uDiffuseMap, vTexCoord).rgb;
+    
+    // Spot pattern
+    float gridSize = 10.0;                // 10 spots across each texture coordinate axis
+    vec2 scaled = vTexCoord * gridSize;   // Scale texture coordinates
+    vec2 grid = fract(scaled);            // Fractional part: position within cell
+    float dist = length(grid - vec2(0.5)); // Distance to cell center
+    float radius = 0.2;                   // Spot radius
+    float spot = (dist < radius) ? 1.0 : 0.0; // 1.0 inside spot, 0.0 outside
+    
+    // Modify diffuse color with spots
+    vec3 spotColor = vec3(0.5);           // Medium gray for spots
+    vec3 diffuseColor = mix(textureColor, spotColor, spot);
+    
+    // Material properties
     vec3 ambientColor = diffuseColor * 0.2;
     vec3 specularColor = vec3(1.0);
     float shininess = 32.0;
@@ -191,8 +224,7 @@ void main() {
     vec3 result = ambient + (diffuse + specular) * attenuation;
     
     fragColor = vec4(result, 1.0);
-}
-`;
+}`;
 
 // PBR Shading
 const pbrVertexShader = `#version 300 es
@@ -258,21 +290,21 @@ float DistributionGGX(vec3 N, vec3 H, float roughness) {
     float a2 = a * a;
     float NdotH = max(dot(N, H), 0.0);
     float NdotH2 = NdotH * NdotH;
-    
+
     float numerator = a2;
     float denominator = (NdotH2 * (a2 - 1.0) + 1.0);
     denominator = PI * denominator * denominator;
-    
+
     return numerator / max(denominator, 0.0000001);
 }
 
 float GeometrySchlickGGX(float NdotV, float roughness) {
     float r = (roughness + 1.0);
     float k = (r * r) / 8.0;
-    
+
     float numerator = NdotV;
     float denominator = NdotV * (1.0 - k) + k;
-    
+
     return numerator / max(denominator, 0.0000001);
 }
 
@@ -281,7 +313,7 @@ float GeometrySmith(vec3 N, vec3 V, vec3 L, float roughness) {
     float NdotL = max(dot(N, L), 0.0);
     float ggx1 = GeometrySchlickGGX(NdotV, roughness);
     float ggx2 = GeometrySchlickGGX(NdotL, roughness);
-    
+
     return ggx1 * ggx2;
 }
 
@@ -292,59 +324,67 @@ vec3 FresnelSchlick(float cosTheta, vec3 F0) {
 void main() {
     // Material properties from textures
     vec3 albedo = texture(uAlbedoMap, vTexCoord).rgb;
+    
+    // Add gray spots based on texture coordinates
+    float gridSize = 10.0;                // Number of spots along each axis
+    vec2 scaled = vTexCoord * gridSize;   // Scale texture coords to grid
+    vec2 grid = fract(scaled);            // Get position within each grid cell
+    float dist = length(grid - vec2(0.5)); // Distance from cell center
+    float radius = 0.2;                   // Spot radius
+    float spot = dist < radius ? 1.0 : 0.0; // 1.0 if inside spot, 0.0 otherwise
+    vec3 spotColor = vec3(0.5);           // Gray color for spots
+    vec3 finalAlbedo = mix(albedo, spotColor, spot); // Blend original albedo with spot color
+
     float metallic = texture(uMetallicMap, vTexCoord).r;
     float roughness = texture(uRoughnessMap, vTexCoord).r;
     float ao = texture(uAoMap, vTexCoord).r;
-    
+
     // Normalize vectors
     vec3 N = normalize(vNormal);
     vec3 V = normalize(uCameraPosition - vPosition);
-    
+
     // Calculate reflectance at normal incidence (F0)
-    // For metals, F0 is the albedo color
-    // For dielectrics, F0 is 0.04
     vec3 F0 = vec3(0.04);
-    F0 = mix(F0, albedo, metallic);
-    
+    F0 = mix(F0, finalAlbedo, metallic); // Use finalAlbedo here
+
     // Initialize lighting output
     vec3 Lo = vec3(0.0);
-    
+
     // Calculate per-light radiance
     vec3 L = normalize(uLightPosition - vPosition);
     vec3 H = normalize(V + L);
     float distance = length(uLightPosition - vPosition);
     float attenuation = 1.0 / (distance * distance);
     vec3 radiance = uLightColor * attenuation;
-    
+
     // Cook-Torrance BRDF
     float NDF = DistributionGGX(N, H, roughness);
     float G = GeometrySmith(N, V, L, roughness);
     vec3 F = FresnelSchlick(max(dot(H, V), 0.0), F0);
-    
+
     vec3 kS = F;
     vec3 kD = vec3(1.0) - kS;
     kD *= 1.0 - metallic;
-    
+
     vec3 numerator = NDF * G * F;
     float denominator = 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0);
     vec3 specular = numerator / max(denominator, 0.0000001);
-    
+
     // Add to outgoing radiance Lo
     float NdotL = max(dot(N, L), 0.0);
-    Lo += (kD * albedo / PI + specular) * radiance * NdotL;
-    
+    Lo += (kD * finalAlbedo / PI + specular) * radiance * NdotL; // Use finalAlbedo here
+
     // Add ambient lighting
-    vec3 ambient = vec3(0.03) * albedo * ao;
-    
+    vec3 ambient = vec3(0.03) * finalAlbedo * ao; // Use finalAlbedo here
+
     // Final color
     vec3 color = ambient + Lo;
-    
+
     // Tone mapping (HDR to LDR)
     color = color / (color + vec3(1.0));
-    
+
     // Gamma correction
     color = pow(color, vec3(1.0/2.2));
-    
+
     fragColor = vec4(color, 1.0);
-}
-`;
+}`;
