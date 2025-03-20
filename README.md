@@ -5,6 +5,7 @@ This repo is my playground for revisiting WebGL concepts to solidify my knowledg
 ## What's Planned Inside
 
 -   **Fundamentals**: Core WebGL concepts, coordinate systems, and the graphics pipeline
+-   **Advanced**: Advanced WebGL concepts
 -   **Three.js Integration**: Leveraging Three.js for more efficient 3D development
 -   **React Integration**: Combining WebGL and Three.js with React applications
 -   **Advanced Techniques**: Performance optimization, shaders, and visual effects
