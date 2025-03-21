@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WebGL 2 Data Flow Examples</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <h1>WebGL 2 Data Flow: CPU-GPU Communication</h1>
+            <p>Demonstrations of key data transfer mechanisms in WebGL 2</p>
+        </header>
+
+        <main>
+            <!-- WebGL Canvas -->
+            <div class="canvas-container">
+                <canvas id="webgl-canvas"></canvas>
+            </div>
+
+            <!-- Color Picker Container -->
+            <div id="colorPicker" class="color-picker-container"></div>
+
+            <!-- Controls Panel Toggle -->
+            <button class="toggle-ui">+</button>
+
+            <!-- Controls Panel -->
+            <div class="controls-panel">
+                <h3>Scene Controls</h3>
+
+                <div class="control-group">
+                    <label for="lightIntensity">Light Intensity</label>
+                    <input type="range" id="lightIntensity" min="0" max="2" step="0.1" value="1" />
+                </div>
+
+                <div class="control-group">
+                    <label for="ambientStrength">Ambient Light</label>
+                    <input type="range" id="ambientStrength" min="0" max="1" step="0.05" value="0.3" />
+                </div>
+
+                <div class="control-group">
+                    <label>Material</label>
+                    <div class="button-group">
+                        <button id="materialMetal">Metal</button>
+                        <button id="materialPlastic">Plastic</button>
+                        <button id="materialWood">Wood</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Background</label>
+                    <select id="backgroundSelect">
+                        <option value="skybox">Skybox</option>
+                        <option value="solid">Solid Color</option>
+                        <option value="gradient">Gradient</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Object Color</label>
+                    <!-- The color picker will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <script src="index.js"></script>
+    </body>
+</html>
