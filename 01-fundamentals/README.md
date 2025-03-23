@@ -35,11 +35,22 @@ This section covers the core concepts required to understand WebGL 2 programming
     - WebGL 2 shader features
 
 5. **Data Flow** (05-data-flow)
+
     - Data transfer from JavaScript to GPU
     - Buffer management and VAOs
     - Uniform buffer objects (UBOs)
     - Texture data handling
     - Optimizing CPU-GPU communication
+
+6. **Blinn Phong**
+
+7. **Texturing**
+
+8. **Advanced Lighting**
+
+9. **Interactivity**
+
+10. **Scene management**
 
 ## Getting Started
 
