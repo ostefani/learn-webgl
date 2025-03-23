@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Advanced WebGL 2 Shading & Materials</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Advanced WebGL 2 Shading & Materials</h1>
+            <div class="controls">
+                <div class="control-group">
+                    <label for="shading-mode">Shading Mode:</label>
+                    <select id="shading-mode">
+                        <option value="basic">Basic Phong</option>
+                        <option value="normal-map">Normal Mapping</option>
+                        <option value="pbr">PBR (Basic)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="rotation-speed">Rotation Speed:</label>
+                    <input type="range" id="rotation-speed" min="0" max="100" value="20" />
+                </div>
+                <div class="control-group">
+                    <label for="light-position">Light Position:</label>
+                    <input type="range" id="light-x" min="-10" max="10" value="5" step="0.1" />
+                    <input type="range" id="light-y" min="-10" max="10" value="5" step="0.1" />
+                    <input type="range" id="light-z" min="-10" max="10" value="5" step="0.1" />
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="canvas-container">
+                <canvas id="webgl-canvas"></canvas>
+                <div id="loading" class="loading-indicator">Loading resources...</div>
+                <div id="error-message" class="error-message"></div>
+            </div>
+
+            <div class="info-panel">
+                <h2 id="current-technique">Basic Phong Shading</h2>
+                <div class="technique-description" id="basic-description">
+                    <p>The Phong shading model calculates lighting per-fragment based on:</p>
+                    <ul>
+                        <li><strong>Ambient:</strong> Constant light from all directions</li>
+                        <li><strong>Diffuse:</strong> Light based on surface angle to light</li>
+                        <li><strong>Specular:</strong> Reflections based on viewing angle</li>
+                    </ul>
+                    <p>This is a classic lighting model for basic 3D scenes.</p>
+                </div>
+                <div class="technique-description" id="normal-map-description" style="display: none">
+                    <p>Normal mapping adds the illusion of fine surface detail without adding more geometry.</p>
+                    <ul>
+                        <li><strong>Tangent Space:</strong> The normals are encoded relative to the surface</li>
+                        <li>
+                            <strong>Detail Normals:</strong> The texture provides high-resolution normal information
+                        </li>
+                        <li><strong>Perception of Depth:</strong> Lighting responds to surface details</li>
+                    </ul>
+                    <p>Compare with basic shading to see how surface details affect light reflection.</p>
+                </div>
+                <div class="technique-description" id="pbr-description" style="display: none">
+                    <p>
+                        Physically-Based Rendering (PBR) simulates how light interacts with materials in the real world:
+                    </p>
+                    <ul>
+                        <li><strong>Metalness:</strong> How metal-like the material is</li>
+                        <li><strong>Roughness:</strong> How rough or smooth the surface is</li>
+                        <li><strong>Energy Conservation:</strong> Light energy is preserved</li>
+                    </ul>
+                    <p>This implementation uses a simplified microfacet BRDF model.</p>
+                </div>
+            </div>
+        </main>
+
+        <script type="text/javascript" src="gl-matrix.js"></script>
+        <script type="text/javascript" src="utils.js"></script>
+        <script type="text/javascript" src="models.js"></script>
+        <script type="text/javascript" src="shaders.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+    </body>
+</html>
