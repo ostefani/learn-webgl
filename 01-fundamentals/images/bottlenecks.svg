@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="830" viewBox="0 0 900 830">
+  <!-- Background -->
+  <rect width="900" height="830" fill="#27008b" />
+  
+  <!-- Title -->
+  <rect x="150" y="50" width="600" height="60" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+  <text x="450" y="90" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold" fill="#333">
+    WebGL Performance Bottlenecks
+  </text>
+
+  <!-- Main Pipeline Panel -->
+  <g transform="translate(60, 130)">
+    <rect x="0" y="0" width="770" height="220" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="350" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      The WebGL Rendering Pipeline
+    </text>
+    
+    <!-- CPU processes -->
+    <g transform="translate(20, 70)">
+      <rect x="0" y="0" width="160" height="80" rx="5" ry="5" fill="#bbdefb" stroke="#1565c0" stroke-width="2" />
+      <text x="80" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        CPU Processing
+      </text>
+      <text x="80" y="50" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        JavaScript, Draw
+      </text>
+      <text x="80" y="65" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Calls, API Overhead
+      </text>
+      
+      <!-- CPU bottleneck indicator -->
+      <rect x="-20" y="-15" width="200" height="20" rx="5" ry="5" fill="#ff5252" />
+      <text x="80" y="-2" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold" fill="white">
+        CPU-Limited Bottleneck
+      </text>
+    </g>
+    
+    <!-- Arrow -->
+    <g transform="translate(180, 70)">
+      <path d="M 0,40 L 30,40" fill="none" stroke="#333" stroke-width="2" />
+      <polygon points="30,40 24,36 24,44" fill="#333" />
+    </g>
+    
+    <!-- Vertex Processing -->
+    <g transform="translate(210, 70)">
+      <rect x="0" y="0" width="160" height="80" rx="5" ry="5" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" />
+      <text x="80" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        Vertex Processing
+      </text>
+      <text x="80" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Transform &amp;
+      </text>
+      <text x="80" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Project Vertices
+      </text>
+      
+      <!-- Vertex bottleneck indicator -->
+      <rect x="-20" y="-15" width="200" height="20" rx="5" ry="5" fill="#66bb6a" />
+      <text x="80" y="-2" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold" fill="white">
+        Vertex-Limited Bottleneck
+      </text>
+    </g>
+    
+    <!-- Arrow -->
+    <g transform="translate(370, 70)">
+      <path d="M 0,40 L 30,40" fill="none" stroke="#333" stroke-width="2" />
+      <polygon points="30,40 24,36 24,44" fill="#333" />
+    </g>
+    
+    <!-- Fragment Processing -->
+    <g transform="translate(400, 70)">
+      <rect x="0" y="0" width="160" height="80" rx="5" ry="5" fill="#fff9c4" stroke="#fbc02d" stroke-width="2" />
+      <text x="80" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        Fragment Processing
+      </text>
+      <text x="80" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Pixel Shading
+      </text>
+      <text x="80" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        &amp; Texturing
+      </text>
+      
+      <!-- Fill bottleneck indicator -->
+      <rect x="-20" y="-15" width="200" height="20" rx="5" ry="5" fill="#ffeb3b" />
+      <text x="80" y="-2" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold" fill="#333">
+        Fill-Limited Bottleneck
+      </text>
+    </g>
+    
+    <!-- Arrow -->
+    <g transform="translate(560, 70)">
+      <path d="M 0,40 L 30,40" fill="none" stroke="#333" stroke-width="2" />
+      <polygon points="30,40 24,36 24,44" fill="#333" />
+    </g>
+    
+    <!-- GPU Memory -->
+    <g transform="translate(590, 70)">
+      <rect x="0" y="0" width="160" height="80" rx="5" ry="5" fill="#ffccbc" stroke="#e64a19" stroke-width="2" />
+      <text x="80" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        GPU Memory
+      </text>
+      <text x="80" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Textures, Buffers,
+      </text>
+      <text x="80" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Framebuffers
+      </text>
+      
+      <!-- Memory bottleneck indicator -->
+      <rect x="-20" y="-15" width="200" height="20" rx="5" ry="5" fill="#ff7043" />
+      <text x="80" y="-2" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold" fill="white">
+        Memory-Limited Bottleneck
+      </text>
+    </g>
+    
+    <text x="350" y="180" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Each stage in the WebGL pipeline can become a performance bottleneck.
+    </text>
+    <text x="350" y="200" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Identifying the specific bottleneck is essential for effective optimization.
+    </text>
+  </g>
+  
+  <!-- Bottlenecks & Optimization Panel -->
+  <g transform="translate(60, 370)">
+    <rect x="0" y="0" width="770" height="420" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="350" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      Common Bottlenecks and Optimization Strategies
+    </text>
+    
+    <!-- CPU-Limited -->
+    <g transform="translate(30, 60)">
+      <rect x="0" y="0" width="220" height="160" rx="5" ry="5" fill="#ffebee" stroke="#ff5252" stroke-width="2" />
+      <rect x="0" y="0" width="220" height="26" rx="5" ry="5" fill="#ff5252" />
+      <text x="110" y="18" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+        CPU-Limited
+      </text>
+      
+      <text x="20" y="45" font-family="Arial, sans-serif" font-size="12" fill="#333">• Too many draw calls</text>
+      <text x="20" y="70" font-family="Arial, sans-serif" font-size="12" fill="#333">• Heavy JavaScript operations</text>
+      <text x="20" y="95" font-family="Arial, sans-serif" font-size="12" fill="#333">• Excessive state changes</text>
+      
+      <text x="30" y="125" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ff5252">→ Batch draw calls</text>
+      <text x="30" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ff5252">→ Reduce JS overhead</text>
+    </g>
+    
+    <!-- Transfer-Limited -->
+    <g transform="translate(270, 60)">
+      <rect x="0" y="0" width="220" height="160" rx="5" ry="5" fill="#fff3e0" stroke="#ff9800" stroke-width="2" />
+      <rect x="0" y="0" width="220" height="26" rx="5" ry="5" fill="#ff9800" />
+      <text x="110" y="18" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+        Transfer-Limited
+      </text>
+      
+      <text x="20" y="45" font-family="Arial, sans-serif" font-size="12" fill="#333">• Excessive data upload</text>
+      <text x="20" y="70" font-family="Arial, sans-serif" font-size="12" fill="#333">• Bandwidth bottlenecks</text>
+      <text x="20" y="95" font-family="Arial, sans-serif" font-size="12" fill="#333">• Dynamic buffer updates</text>
+      
+      <text x="30" y="125" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ff9800">→ Minimize uploads</text>
+      <text x="30" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ff9800">→ Reuse buffers</text>
+    </g>
+    
+    <!-- Vertex-Limited -->
+    <g transform="translate(510, 60)">
+      <rect x="0" y="0" width="220" height="160" rx="5" ry="5" fill="#e8f5e9" stroke="#66bb6a" stroke-width="2" />
+      <rect x="0" y="0" width="220" height="26" rx="5" ry="5" fill="#66bb6a" />
+      <text x="110" y="18" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+        Vertex-Limited
+      </text>
+      
+      <text x="20" y="45" font-family="Arial, sans-serif" font-size="12" fill="#333">• Complex vertex shaders</text>
+      <text x="20" y="70" font-family="Arial, sans-serif" font-size="12" fill="#333">• Excessive geometry</text>
+      <text x="20" y="95" font-family="Arial, sans-serif" font-size="12" fill="#333">• Inefficient transform operations</text>
+      
+      <text x="30" y="125" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#66bb6a">→ Optimize shaders</text>
+      <text x="30" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#66bb6a">→ Use LOD techniques</text>
+    </g>
+    
+    <!-- Fill-Limited -->
+    <g transform="translate(30, 240)">
+      <rect x="0" y="0" width="220" height="160" rx="5" ry="5" fill="#fffde7" stroke="#ffeb3b" stroke-width="2" />
+      <rect x="0" y="0" width="220" height="26" rx="5" ry="5" fill="#ffeb3b" />
+      <text x="110" y="18" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+        Fill-Limited
+      </text>
+      
+      <text x="20" y="45" font-family="Arial, sans-serif" font-size="12" fill="#333">• Complex fragment shaders</text>
+      <text x="20" y="70" font-family="Arial, sans-serif" font-size="12" fill="#333">• Too many processed pixels</text>
+      <text x="20" y="95" font-family="Arial, sans-serif" font-size="12" fill="#333">• Overdraw</text>
+      <text x="30" y="110" font-family="Arial, sans-serif" font-size="12" fill="#333">(rendering same pixel multiple times)</text>
+      
+      <text x="30" y="130" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#d6c100">→ Simplify shaders</text>
+      <text x="30" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#d6c100">→ Reduce overdraw</text>
+    </g>
+    
+    <!-- Memory-Limited -->
+    <g transform="translate(270, 240)">
+      <rect x="0" y="0" width="220" height="160" rx="5" ry="5" fill="#fbe9e7" stroke="#ff7043" stroke-width="2" />
+      <rect x="0" y="0" width="220" height="26" rx="5" ry="5" fill="#ff7043" />
+      <text x="110" y="18" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+        Memory-Limited
+      </text>
+      
+      <text x="20" y="45" font-family="Arial, sans-serif" font-size="12" fill="#333">• Oversized textures</text>
+      <text x="20" y="70" font-family="Arial, sans-serif" font-size="12" fill="#333">• Too many active buffers</text>
+      <text x="20" y="95" font-family="Arial, sans-serif" font-size="12" fill="#333">• Inefficient memory management</text>
+      
+      <text x="30" y="125" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ff7043">→ Optimize texture sizes</text>
+      <text x="30" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ff7043">→ Pool resources</text>
+    </g>
+    
+    <!-- Optimization Process -->
+    <g transform="translate(510, 240)">
+      <rect x="0" y="0" width="220" height="160" rx="5" ry="5" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" />
+      <rect x="0" y="0" width="220" height="26" rx="5" ry="5" fill="#2196f3" />
+      <text x="110" y="18" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+        Optimization Process
+      </text>
+      
+      <text x="20" y="45" font-family="Arial, sans-serif" font-size="12" fill="#333">1. Profile to identify bottleneck</text>
+      <text x="20" y="70" font-family="Arial, sans-serif" font-size="12" fill="#333">2. Apply specific optimizations</text>
+      <text x="20" y="95" font-family="Arial, sans-serif" font-size="12" fill="#333">3. Benchmark, profile again</text>
+      <text x="20" y="120" font-family="Arial, sans-serif" font-size="12" fill="#333">4. Repeat for next bottleneck</text>
+      
+      <text x="110" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#2196f3">Focus on biggest bottleneck first</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,360 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1150" viewBox="0 0 900 1150">
+  <!-- Background with increased size -->
+  <rect width="900" height="1150" fill="#27008b" />
+  
+  <!-- Title - shifted right by 50px to center in wider svg -->
+  <rect x="150" y="50" width="600" height="60" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+  <text x="450" y="90" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold" fill="#333">
+    Primitive Assembly: From Vertices to Shapes
+  </text>
+
+  <!-- Primitive Assembly Process Panel - shifted right by 50px -->
+  <g transform="translate(60, 130)">
+    <rect x="0" y="0" width="770" height="220" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="350" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      The Primitive Assembly Process
+    </text>
+    
+    <!-- Flow diagram -->
+    <!-- Vertex Processing -->
+    <g transform="translate(70, 70)">
+      <rect x="0" y="0" width="120" height="80" rx="5" ry="5" fill="#bbdefb" stroke="#1565c0" stroke-width="2" />
+      <text x="60" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        Vertex Shader
+      </text>
+      <text x="60" y="55" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Processes each
+      </text>
+      <text x="60" y="70" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        vertex independently
+      </text>
+      
+    </g>
+    
+    <!-- Arrow -->
+    <g transform="translate(190, 70)">
+      <path d="M 0,40 L 40,40" fill="none" stroke="#333" stroke-width="2" />
+      <polygon points="40,40 34,36 34,44" fill="#333" />
+    </g>
+    
+    <!-- Primitive Assembly -->
+    <g transform="translate(230, 70)">
+      <rect x="0" y="0" width="120" height="80" rx="5" ry="5" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" />
+      <text x="60" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        Primitive
+      </text>
+      <text x="60" y="45" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        Assembly
+      </text>
+      <text x="60" y="65" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Groups vertices
+      </text>
+      
+      <!-- Primitive type indicator -->
+      <text x="55" y="90" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#388e3c">
+        gl.TRIANGLES
+      </text>
+    </g>
+    
+    <!-- Arrow -->
+    <g transform="translate(350, 70)">
+      <path d="M 0,40 L 40,40" fill="none" stroke="#333" stroke-width="2" />
+      <polygon points="40,40 34,36 34,44" fill="#333" />
+    </g>
+    
+    <!-- Clipping -->
+    <g transform="translate(390, 70)">
+      <rect x="0" y="0" width="120" height="80" rx="5" ry="5" fill="#fff9c4" stroke="#fbc02d" stroke-width="2" />
+      <text x="60" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        Clipping
+      </text>
+      <text x="60" y="55" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Against view
+      </text>
+      <text x="60" y="70" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        frustum
+      </text>
+      
+    </g>
+    
+    <!-- Arrow -->
+    <g transform="translate(510, 70)">
+      <path d="M 0,40 L 40,40" fill="none" stroke="#333" stroke-width="2" />
+      <polygon points="40,40 34,36 34,44" fill="#333" />
+    </g>
+    
+    <!-- Rasterization -->
+    <g transform="translate(550, 70)">
+      <rect x="0" y="0" width="120" height="80" rx="5" ry="5" fill="#ffccbc" stroke="#e64a19" stroke-width="2" />
+      <text x="60" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        Rasterization
+      </text>
+      <text x="60" y="55" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Converts to
+      </text>
+      <text x="60" y="70" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        fragments/pixels
+      </text>
+    </g>
+    
+    <text x="350" y="180" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      After vertex shaders run independently on each vertex, primitive assembly
+    </text>
+    <text x="350" y="200" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      groups them into geometric shapes based on the specified primitive type
+    </text>
+  </g>
+  
+  <!-- Primitive Types Panel - shifted right by 50px -->
+  <g transform="translate(60, 370)">
+    <rect x="0" y="0" width="770" height="480" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="350" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      Common Primitive Types and Their Efficiency
+    </text>
+    
+    <!-- POINTS -->
+    <g transform="translate(50, 60)">
+      <text x="0" y="20" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">gl.POINTS</text>
+      
+      <!-- Vertex indices -->
+      <text x="15" y="45" font-family="Arial, sans-serif" font-size="14" fill="#333">Vertices:</text>
+      <text x="35" y="65" font-family="monospace" font-size="14" fill="#333">[0, 1, 2, 3, 4, 5]</text>
+      
+      <!-- 3D visualization -->
+      <g transform="translate(200, 20)">
+        <circle cx="0" cy="0" r="5" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="30" cy="10" r="5" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="60" cy="0" r="5" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="10" cy="30" r="5" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="40" cy="40" r="5" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="70" cy="30" r="5" fill="#1565c0" stroke="#333" stroke-width="1" />
+        
+        <!-- Vertex labels -->
+        <text x="-5" y="-10" font-family="monospace" font-size="12" fill="#333">0</text>
+        <text x="25" y="0" font-family="monospace" font-size="12" fill="#333">1</text>
+        <text x="55" y="-10" font-family="monospace" font-size="12" fill="#333">2</text>
+        <text x="5" y="45" font-family="monospace" font-size="12" fill="#333">3</text>
+        <text x="35" y="55" font-family="monospace" font-size="12" fill="#333">4</text>
+        <text x="65" y="45" font-family="monospace" font-size="12" fill="#333">5</text>
+      </g>
+      
+      <text x="350" y="30" font-family="Arial, sans-serif" font-size="14" fill="#333">• Each vertex rendered as a single point</text>
+      <text x="350" y="50" font-family="Arial, sans-serif" font-size="14" fill="#333">• Use for particle systems, point clouds</text>
+    </g>
+    
+    <!-- LINES -->
+    <g transform="translate(50, 130)">
+      <text x="0" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">gl.LINES</text>
+      
+      <!-- Vertex indices -->
+      <text x="15" y="50" font-family="Arial, sans-serif" font-size="14" fill="#333">Vertices:</text>
+      <text x="35" y="70" font-family="monospace" font-size="14" fill="#333">[0, 1, 2, 3, 4, 5]</text>
+      
+      <!-- 3D visualization -->
+      <g transform="translate(200, 20)">
+        <circle cx="0" cy="0" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="30" cy="10" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="60" cy="0" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="10" cy="30" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="40" cy="40" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="70" cy="30" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        
+        <!-- Lines connecting pairs -->
+        <line x1="0" y1="0" x2="30" y2="10" stroke="#333" stroke-width="2" />
+        <line x1="60" y1="0" x2="10" y2="30" stroke="#333" stroke-width="2" />
+        <line x1="40" y1="40" x2="70" y2="30" stroke="#333" stroke-width="2" />
+        
+        <!-- Vertex labels -->
+        <text x="-5" y="-10" font-family="monospace" font-size="12" fill="#333">0</text>
+        <text x="25" y="0" font-family="monospace" font-size="12" fill="#333">1</text>
+        <text x="55" y="-10" font-family="monospace" font-size="12" fill="#333">2</text>
+        <text x="5" y="45" font-family="monospace" font-size="12" fill="#333">3</text>
+        <text x="35" y="55" font-family="monospace" font-size="12" fill="#333">4</text>
+        <text x="65" y="45" font-family="monospace" font-size="12" fill="#333">5</text>
+      </g>
+      
+      <text x="350" y="20" font-family="Arial, sans-serif" font-size="14" fill="#333">• Each pair of vertices forms a line</text>
+      <text x="350" y="40" font-family="Arial, sans-serif" font-size="14" fill="#333">• (0,1), (2,3), (4,5) → three separate lines</text>
+      <text x="350" y="60" font-family="Arial, sans-serif" font-size="14" fill="#333">• Use for wireframes, grids</text>
+    </g>
+    
+    <!-- TRIANGLES -->
+    <g transform="translate(50, 200)">
+      <text x="0" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">gl.TRIANGLES</text>
+      
+      <!-- Vertex indices -->
+      <text x="15" y="50" font-family="Arial, sans-serif" font-size="14" fill="#333">Vertices:</text>
+      <text x="35" y="65" font-family="monospace" font-size="14" fill="#333">[0, 1, 2, 3, 4, 5]</text>
+      
+      <!-- 3D visualization -->
+      <g transform="translate(200, 20)">
+        <circle cx="0" cy="0" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="30" cy="10" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="15" cy="30" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="40" cy="20" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="70" cy="30" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="55" cy="50" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        
+        <!-- Triangles -->
+        <path d="M 0,0 L 30,10 L 15,30 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        <path d="M 40,20 L 70,30 L 55,50 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        
+        <!-- Vertex labels -->
+        <text x="-5" y="-10" font-family="monospace" font-size="12" fill="#333">0</text>
+        <text x="25" y="0" font-family="monospace" font-size="12" fill="#333">1</text>
+        <text x="5" y="40" font-family="monospace" font-size="12" fill="#333">2</text>
+        <text x="35" y="10" font-family="monospace" font-size="12" fill="#333">3</text>
+        <text x="65" y="20" font-family="monospace" font-size="12" fill="#333">4</text>
+        <text x="60" y="60" font-family="monospace" font-size="12" fill="#333">5</text>
+      </g>
+      
+      <text x="350" y="20" font-family="Arial, sans-serif" font-size="14" fill="#333">• Each three vertices form a triangle</text>
+      <text x="350" y="40" font-family="Arial, sans-serif" font-size="14" fill="#333">• (0,1,2), (3,4,5) → two separate triangles</text>
+      <text x="350" y="60" font-family="Arial, sans-serif" font-size="14" fill="#333">• Basic building block for 3D surfaces</text>
+    </g>
+    
+    <!-- TRIANGLE_STRIP -->
+    <g transform="translate(50, 270)">
+      <text x="0" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">gl.TRIANGLE_STRIP</text>
+      
+      <!-- Vertex indices -->
+      <text x="15" y="50" font-family="Arial, sans-serif" font-size="14" fill="#333">Vertices:</text>
+      <text x="35" y="70" font-family="monospace" font-size="14" fill="#333">[0, 1, 2, 3, 4, 5]</text>
+      
+      <!-- 3D visualization -->
+      <g transform="translate(200, 20)">
+        <circle cx="0" cy="0" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="30" cy="10" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="15" cy="30" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="45" cy="40" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="30" cy="60" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="60" cy="70" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        
+        <!-- Triangles -->
+        <path d="M 0,0 L 30,10 L 15,30 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        <path d="M 30,10 L 15,30 L 45,40 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        <path d="M 15,30 L 45,40 L 30,60 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        <path d="M 45,40 L 30,60 L 60,70 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        
+        <!-- Vertex labels -->
+        <text x="-5" y="-10" font-family="monospace" font-size="12" fill="#333">0</text>
+        <text x="25" y="0" font-family="monospace" font-size="12" fill="#333">1</text>
+        <text x="5" y="35" font-family="monospace" font-size="12" fill="#333">2</text>
+        <text x="50" y="35" font-family="monospace" font-size="12" fill="#333">3</text>
+        <text x="20" y="65" font-family="monospace" font-size="12" fill="#333">4</text>
+        <text x="65" y="75" font-family="monospace" font-size="12" fill="#333">5</text>
+      </g>
+      
+      <text x="350" y="20" font-family="Arial, sans-serif" font-size="14" fill="#333">• Forms connected triangles in a strip</text>
+      <text x="350" y="40" font-family="Arial, sans-serif" font-size="14" fill="#333">• (0,1,2), (1,2,3), (2,3,4), (3,4,5) → four triangles</text>
+      <text x="350" y="60" font-family="Arial, sans-serif" font-size="14" fill="#333">• More efficient: 6 vertices create 4 triangles</text>
+    </g>
+    
+    <!-- TRIANGLE_FAN -->
+    <g transform="translate(50, 340)">
+      <text x="0" y="50" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">gl.TRIANGLE_FAN</text>
+      
+      <!-- Vertex indices -->
+      <text x="15" y="70" font-family="Arial, sans-serif" font-size="14" fill="#333">Vertices:</text>
+      <text x="35" y="90" font-family="monospace" font-size="14" fill="#333">[0, 1, 2, 3, 4, 5]</text>
+      
+      <!-- 3D visualization -->
+      <g transform="translate(200, 35)">
+        <circle cx="30" cy="30" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="60" cy="0" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="70" cy="30" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="60" cy="60" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="30" cy="70" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        <circle cx="0" cy="30" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+        
+        <!-- Fan triangles -->
+        <path d="M 30,30 L 60,0 L 70,30 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        <path d="M 30,30 L 70,30 L 60,60 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        <path d="M 30,30 L 60,60 L 30,70 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        <path d="M 30,30 L 30,70 L 0,30 Z" fill="#388e3c" fill-opacity="0.5" stroke="#333" stroke-width="1" />
+        
+        <!-- Vertex labels -->
+        <text x="30" y="25" font-family="monospace" font-size="12" fill="#333">0</text>
+        <text x="65" y="-5" font-family="monospace" font-size="12" fill="#333">1</text>
+        <text x="75" y="30" font-family="monospace" font-size="12" fill="#333">2</text>
+        <text x="65" y="70" font-family="monospace" font-size="12" fill="#333">3</text>
+        <text x="30" y="80" font-family="monospace" font-size="12" fill="#333">4</text>
+        <text x="-5" y="30" font-family="monospace" font-size="12" fill="#333">5</text>
+      </g>
+      
+      <text x="350" y="30" font-family="Arial, sans-serif" font-size="14" fill="#333">• All triangles share first vertex as central point</text>
+      <text x="350" y="50" font-family="Arial, sans-serif" font-size="14" fill="#333">• (0,1,2), (0,2,3), (0,3,4), (0,4,5) → four triangles</text>
+      <text x="350" y="70" font-family="Arial, sans-serif" font-size="14" fill="#333">• Ideal for radial surfaces, convex polygons</text>
+    </g>
+  </g>
+  
+  <!-- Clipping Panel - shifted right by 50px -->
+  <g transform="translate(60, 870)">
+    <rect x="0" y="0" width="770" height="250" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="350" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      Clipping Against the View Frustum
+    </text>
+    
+    <!-- 3D frustum and triangle clipping - CORRECTED VERSION -->
+    <g transform="translate(50, 60)">
+      <!-- View frustum as seen from viewer's perspective -->
+      <!-- Near plane (smaller rectangle closer to viewer) -->
+      <rect x="50" y="30" width="100" height="80" fill="none" stroke="#333" stroke-width="1.5" />
+      
+      <!-- Far plane (larger rectangle further from viewer) -->
+      <rect x="20" y="10" width="160" height="120" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="5,3" />
+      
+      <!-- Connecting lines between near and far planes -->
+      <line x1="50" y1="30" x2="20" y2="10" stroke="#333" stroke-width="1" />
+      <line x1="150" y1="30" x2="180" y2="10" stroke="#333" stroke-width="1" />
+      <line x1="50" y1="110" x2="20" y2="130" stroke="#333" stroke-width="1" />
+      <line x1="150" y1="110" x2="180" y2="130" stroke="#333" stroke-width="1" />
+      
+      <!-- Fill the frustum with semi-transparent color to show volume -->
+      <path d="M 50,30 L 20,10 L 180,10 L 150,30 Z" fill="#e3f2fd" fill-opacity="0.3" />
+      <path d="M 50,110 L 20,130 L 180,130 L 150,110 Z" fill="#e3f2fd" fill-opacity="0.3" />
+      <path d="M 50,30 L 50,110 L 20,130 L 20,10 Z" fill="#e3f2fd" fill-opacity="0.3" />
+      <path d="M 150,30 L 150,110 L 180,130 L 180,10 Z" fill="#e3f2fd" fill-opacity="0.3" />
+      
+      <!-- Original triangle that extends beyond frustum -->
+      <path d="M 70,50 L 180,60 L 120,140 Z" fill="#ff9800" fill-opacity="0.3" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3" />
+      
+      <!-- Original vertices -->
+      <circle cx="70" cy="50" r="4" fill="#1565c0" stroke="#333" stroke-width="1" />
+      <circle cx="180" cy="60" r="4" fill="#ff9800" stroke="#333" stroke-width="1" />
+      <circle cx="120" cy="140" r="4" fill="#ff9800" stroke="#333" stroke-width="1" />
+      
+      <!-- Clipping planes that intersect the triangle -->
+      <line x1="150" y1="30" x2="150" y2="110" stroke="#e64a19" stroke-width="1.5" stroke-dasharray="3,2" />
+      <line x1="50" y1="110" x2="150" y2="110" stroke="#e64a19" stroke-width="1.5" stroke-dasharray="3,2" />
+      
+      <!-- Clipped triangle (inside frustum) -->
+      <path d="M 70,50 L 150,58.125 L 150,110 L 107.5,110 Z" fill="#388e3c" fill-opacity="0.6" stroke="#333" stroke-width="1.5" />
+      
+      <!-- New vertices created by clipping (purple) -->
+      <circle cx="150" cy="58.125" r="4" fill="#9c27b0" stroke="#333" stroke-width="1.5" />
+      <circle cx="150" cy="110" r="4" fill="#9c27b0" stroke="#333" stroke-width="1.5" />
+      <circle cx="107.5" cy="110" r="4" fill="#9c27b0" stroke="#333" stroke-width="1.5" />
+      
+      <!-- Labels -->
+      <text x="100" y="20" font-family="Arial, sans-serif" font-size="14" fill="#333">View Frustum</text>
+      <text x="60" y="140" font-family="Arial, sans-serif" font-size="10" fill="#9c27b0">New vertex (107.5, 110)</text>
+      <text x="155" y="58" font-family="Arial, sans-serif" font-size="10" fill="#9c27b0">New vertex (150, 58.125)</text>
+      <text x="155" y="110" font-family="Arial, sans-serif" font-size="10" fill="#9c27b0">New vertex (150, 110)</text>
+      
+      <!-- Clipping planes labels -->
+      <text x="170" y="70" font-family="Arial, sans-serif" font-size="10" fill="#e64a19">Right plane</text>
+      <text x="90" y="125" font-family="Arial, sans-serif" font-size="10" fill="#e64a19">Bottom plane</text>
+    </g>
+    
+    <g transform="translate(400, 60)">
+      <text x="0" y="10" font-family="Arial, sans-serif" font-size="14" fill="#333">• Primitives extending beyond view frustum are clipped</text>
+      <text x="0" y="35" font-family="Arial, sans-serif" font-size="14" fill="#333">• New vertices are created at exact intersection points</text>
+      <text x="0" y="60" font-family="Arial, sans-serif" font-size="14" fill="#333">• Clipping transforms the triangle into a quadrilateral</text>
+      <text x="0" y="85" font-family="Arial, sans-serif" font-size="14" fill="#333">• The quadrilateral is then split into triangles for rendering</text>
+      <text x="0" y="110" font-family="Arial, sans-serif" font-size="14" fill="#333">• Only visible portions inside the frustum are processed</text>
+      <text x="0" y="135" font-family="Arial, sans-serif" font-size="14" fill="#333">• Clipping occurs against all six frustum planes</text>
+      <text x="0" y="160" font-family="Arial, sans-serif" font-size="14" fill="#333">• This happens automatically in the GPU pipeline</text>
+    </g>
+  </g>
+</svg>

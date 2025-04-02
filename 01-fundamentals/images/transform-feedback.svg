@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="780" viewBox="0 0 800 780">
+  <!-- Background -->
+  <rect width="800" height="780" fill="#27008b" />
+  
+  <!-- Title -->
+  <rect x="100" y="20" width="600" height="60" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+  <text x="400" y="60" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold" fill="#333">
+    Transform Feedback: GPU-to-GPU Data Loop
+  </text>
+
+  <!-- Traditional WebGL Pipeline Panel -->
+  <g transform="translate(50, 100)">
+    <rect x="0" y="0" width="700" height="160" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="350" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      Traditional WebGL Pipeline
+    </text>
+    
+    <!-- CPU Side -->
+    <rect x="30" y="55" width="100" height="80" rx="5" ry="5" fill="#bbdefb" stroke="#1565c0" stroke-width="2" />
+    <text x="80" y="50" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1565c0">CPU</text>
+    
+    <!-- Vertex Shader -->
+    <rect x="180" y="55" width="100" height="80" rx="5" ry="5" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" />
+    <text x="230" y="50" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#388e3c">Vertex Shader</text>
+    
+    <!-- Rasterization -->
+    <rect x="330" y="55" width="100" height="80" rx="5" ry="5" fill="#fff9c4" stroke="#b9790b" stroke-width="2" />
+    <text x="380" y="50" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#b9790b">Rasterization</text>
+    
+    <!-- Fragment Shader -->
+    <rect x="480" y="55" width="100" height="80" rx="5" ry="5" fill="#ffccbc" stroke="#e64a19" stroke-width="2" />
+    <text x="530" y="50" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#e64a19">Fragment Shader</text>
+    
+    <!-- Output -->
+    <rect x="620" y="55" width="50" height="80" rx="5" ry="5" fill="#d1c4e9" stroke="#512da8" stroke-width="2" />
+    <text x="645" y="50" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#512da8">Frame</text>
+    
+    <!-- Arrows -->
+    <path d="M 130,95 L 180,95" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="180,95 174,91 174,99" fill="#333" />
+    
+    <path d="M 280,95 L 330,95" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="330,95 324,91 324,99" fill="#333" />
+    
+    <path d="M 430,95 L 480,95" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="480,95 474,91 474,99" fill="#333" />
+    
+    <path d="M 580,95 L 620,95" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="620,95 614,91 614,99" fill="#333" />
+    
+    <!-- Update for Next Frame - CPU bottleneck -->
+    <path d="M 620,135 C 620,160 80,160 80,135" fill="none" stroke="#ff5252" stroke-width="2" stroke-dasharray="5,3" />
+    <polygon points="80,135 74,141 86,141" fill="#ff5252" />
+    <text x="350" y="146" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#ff5252">
+      CPU bottleneck: Must read back data, update on CPU, and re-upload
+    </text>
+  </g>
+  
+  <!-- Transform Feedback Pipeline Panel -->
+  <g transform="translate(50, 280)">
+    <rect x="0" y="0" width="700" height="250" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="350" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      WebGL 2 Pipeline with Transform Feedback
+    </text>
+    
+    <!-- CPU Side -->
+    <rect x="30" y="60" width="100" height="80" rx="5" ry="5" fill="#bbdefb" stroke="#1565c0" stroke-width="2" />
+    <text x="80" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1565c0">CPU</text>
+    <text x="80" y="100" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1565c0">Initial Setup</text>
+    
+    <!-- Vertex Shader -->
+    <rect x="180" y="60" width="100" height="80" rx="5" ry="5" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" />
+    <text x="230" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#388e3c">Vertex Shader</text>
+    <text x="230" y="85" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#388e3c">Processes</text>
+    <text x="230" y="100" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#388e3c">Vertex Data</text>
+    <text x="230" y="115" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#388e3c">in Parallel</text>
+    
+    <!-- Transform Feedback Buffer -->
+    <rect x="180" y="160" width="100" height="30" rx="5" ry="5" fill="#80cbc4" stroke="#00796b" stroke-width="2" />
+    <text x="230" y="180" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#00796b">
+      Transform Feedback Buffer
+    </text>
+    
+    <!-- Rasterization -->
+    <rect x="330" y="60" width="100" height="80" rx="5" ry="5" fill="#fff9c4" stroke="#b9790b" stroke-width="2" />
+    <text x="380" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#b9790b">Rasterization</text>
+    
+    <!-- Fragment Shader -->
+    <rect x="480" y="60" width="100" height="80" rx="5" ry="5" fill="#ffccbc" stroke="#e64a19" stroke-width="2" />
+    <text x="530" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#e64a19">Fragment Shader</text>
+    
+    <!-- Output -->
+    <rect x="620" y="60" width="50" height="80" rx="5" ry="5" fill="#d1c4e9" stroke="#512da8" stroke-width="2" />
+    <text x="645" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#512da8">Frame</text>
+    
+    <!-- Arrows -->
+    <path d="M 130,100 L 180,100" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="180,100 174,96 174,104" fill="#333" />
+    
+    <path d="M 280,100 L 330,100" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="330,100 324,96 324,104" fill="#333" />
+    
+    <path d="M 430,100 L 480,100" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="480,100 474,96 474,104" fill="#333" />
+    
+    <path d="M 580,100 L 620,100" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="620,100 614,96 614,104" fill="#333" />
+    
+    <!-- Transform Feedback Arrows -->
+    <path d="M 230,140 L 230,160" fill="none" stroke="#00796b" stroke-width="2" />
+    <polygon points="230,160 226,154 234,154" fill="#00796b" />
+    
+    <!-- GPU-to-GPU Loop - Key feature -->
+    <path d="M 230,190 C 150,210 150,50 180,80" fill="none" stroke="#00796b" stroke-width="3" />
+    <polygon points="180,80 172,78 177,87" fill="#00796b" />
+    
+    <text x="95" y="160" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold" fill="#00796b">
+      GPU-to-GPU Loop:
+    </text>
+    <text x="90" y="175" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#00796b">
+      No CPU Involvement
+    </text>
+    
+    <!-- Text explaining the benefit -->
+    <text x="350" y="210" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Vertex shader outputs captured and fed back as inputs for next frame
+    </text>
+    <text x="350" y="230" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Enables thousands of parallel updates with no CPU bottleneck
+    </text>
+  </g>
+  
+  <!-- Practical Example Panel -->
+  <g transform="translate(50, 550)">
+    <rect x="0" y="0" width="700" height="180" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="350" y="25" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      Practical Example: Particle System
+    </text>
+    
+    <!-- Particles Visualization -->
+    <!-- A 3D perspective view of particles -->
+    <g transform="translate(40, 65)">
+      <!-- 3D box representing simulation space -->
+      <polygon points="0,50 150,50 150,0 0,0" fill="#e8eaf6" stroke="#3949ab" stroke-width="1"/>
+      <polygon points="150,0 180,30 180,80 150,50" fill="#c5cae9" stroke="#3949ab" stroke-width="1"/>
+      <polygon points="0,0 30,30 180,30 150,0" fill="#9fa8da" stroke="#3949ab" stroke-width="1"/>
+      
+      <!-- Particles (as small circles with motion trails) -->
+      <!-- First loop will create multiple particles with different positions and colors -->
+      
+      <!-- Particle 1 -->
+      <circle cx="50" cy="20" r="3" fill="#f44336"/>
+      <line x1="50" y1="20" x2="55" y2="25" stroke="#f44336" stroke-width="1.5" opacity="0.7"/>
+      <line x1="55" y1="25" x2="60" y2="31" stroke="#f44336" stroke-width="1" opacity="0.5"/>
+      <line x1="60" y1="31" x2="65" y2="38" stroke="#f44336" stroke-width="0.5" opacity="0.3"/>
+      
+      <!-- Particle 2 -->
+      <circle cx="80" cy="35" r="3" fill="#2196f3"/>
+      <line x1="80" y1="35" x2="85" y2="30" stroke="#2196f3" stroke-width="1.5" opacity="0.7"/>
+      <line x1="85" y1="30" x2="91" y2="26" stroke="#2196f3" stroke-width="1" opacity="0.5"/>
+      <line x1="91" y1="26" x2="98" y2="23" stroke="#2196f3" stroke-width="0.5" opacity="0.3"/>
+      
+      <!-- Particle 3 -->
+      <circle cx="120" cy="15" r="3" fill="#4caf50"/>
+      <line x1="120" y1="15" x2="115" y2="20" stroke="#4caf50" stroke-width="1.5" opacity="0.7"/>
+      <line x1="115" y1="20" x2="111" y2="26" stroke="#4caf50" stroke-width="1" opacity="0.5"/>
+      <line x1="111" y1="26" x2="108" y2="33" stroke="#4caf50" stroke-width="0.5" opacity="0.3"/>
+      
+      <!-- Add many more particles at different positions -->
+      <circle cx="30" cy="40" r="2" fill="#9c27b0"/>
+      <circle cx="65" cy="30" r="2" fill="#ff9800"/>
+      <circle cx="100" cy="10" r="2" fill="#ffeb3b"/>
+      <circle cx="140" cy="25" r="2" fill="#009688"/>
+      <circle cx="20" cy="15" r="2" fill="#e91e63"/>
+      <circle cx="70" cy="7" r="2" fill="#3f51b5"/>
+      <circle cx="95" cy="38" r="2" fill="#cddc39"/>
+      <circle cx="125" cy="42" r="2" fill="#ff5722"/>
+      <circle cx="55" cy="45" r="2" fill="#607d8b"/>
+      <circle cx="32" cy="27" r="2" fill="#9e9e9e"/>
+      <circle cx="115" cy="5" r="2" fill="#8bc34a"/>
+      <circle cx="78" cy="18" r="2" fill="#ffc107"/>
+      <circle cx="135" cy="33" r="2" fill="#03a9f4"/>
+      
+      <!-- Many more particles as small dots -->
+      <g opacity="0.6">
+        <circle cx="45" cy="12" r="1" fill="#f44336"/>
+        <circle cx="58" cy="28" r="1" fill="#2196f3"/>
+        <circle cx="73" cy="42" r="1" fill="#4caf50"/>
+        <circle cx="89" cy="8" r="1" fill="#9c27b0"/>
+        <circle cx="107" cy="27" r="1" fill="#ff9800"/>
+        <circle cx="121" cy="39" r="1" fill="#ffeb3b"/>
+        <circle cx="142" cy="16" r="1" fill="#009688"/>
+        <circle cx="25" cy="36" r="1" fill="#e91e63"/>
+        <circle cx="40" cy="22" r="1" fill="#3f51b5"/>
+        <circle cx="62" cy="9" r="1" fill="#cddc39"/>
+        <circle cx="82" cy="45" r="1" fill="#ff5722"/>
+        <circle cx="101" cy="31" r="1" fill="#607d8b"/>
+        <circle cx="123" cy="7" r="1" fill="#9e9e9e"/>
+        <circle cx="137" cy="43" r="1" fill="#8bc34a"/>
+        <circle cx="48" cy="38" r="1" fill="#ffc107"/>
+        <circle cx="66" cy="17" r="1" fill="#03a9f4"/>
+        <circle cx="93" cy="25" r="1" fill="#f44336"/>
+        <circle cx="111" cy="12" r="1" fill="#2196f3"/>
+        <circle cx="129" cy="30" r="1" fill="#4caf50"/>
+        <circle cx="37" cy="5" r="1" fill="#9c27b0"/>
+        <!-- And many more could be added -->
+      </g>
+    </g>
+    
+    <!-- Code Example -->
+    <g transform="translate(240, 40)">
+      <rect x="0" y="0" width="430" height="110" rx="5" ry="5" fill="#2d2d2d" />
+      
+      <text x="10" y="20" font-family="monospace" font-size="11" fill="#e6e6e6">// Set up transform feedback varyings before linking program</text>
+      <text x="10" y="40" font-family="monospace" font-size="11" fill="#ffcc66">gl.transformFeedbackVaryings(program,</text>
+      <text x="30" y="55" font-family="monospace" font-size="11" fill="#99cc99">  ['newPosition', 'newVelocity'], gl.SEPARATE_ATTRIBS);</text>
+      <text x="10" y="75" font-family="monospace" font-size="11" fill="#e6e6e6">// Capture vertex shader outputs to buffer for next frame</text>
+      <text x="10" y="95" font-family="monospace" font-size="11" fill="#ffcc66">gl.bindBufferBase(gl.TRANSFORM_FEEDBACK_BUFFER, 0, tfBuffer);</text>
+    </g>
+    
+    <text x="350" y="170" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#00796b" font-weight="bold">
+      Update thousands of particles in parallel without involving the CPU
+    </text>
+  </g>
+</svg>

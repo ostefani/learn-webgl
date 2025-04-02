@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900">
+  <!-- Background -->
+  <rect width="800" height="900" fill="#27008b" />
+  
+  <!-- Title -->
+  <rect x="100" y="40" width="600" height="60" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+  <text x="400" y="80" font-family="Arial, sans-serif" font-size="28" text-anchor="middle" font-weight="bold" fill="#333">Normal Matrix: Mathematical Necessity</text>
+  
+  <!-- Section 1: Original Plane -->
+  <rect x="50" y="120" width="700" height="200" rx="15" ry="15" fill="#f0f0f0" opacity="0.9" />
+  <text x="400" y="150" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" font-weight="bold" fill="#333">Original Surface and Normal</text>
+  
+  <!-- Original plane (small 3D cube in isometric view) -->
+  <g transform="translate(400, 220)">
+    <!-- Face of the cube -->
+    <polygon points="-80,-40 80,-40 80,40 -80,40" fill="#b5f5ec" stroke="#13c2c2" stroke-width="2" />
+    
+    <!-- Normal vector - exactly perpendicular to surface -->
+    <line x1="0" y1="0" x2="0" y2="-80" stroke="#1890ff" stroke-width="3" />
+    <polygon points="0,-80 -6,-74 6,-74" fill="#1890ff" />
+    
+    <!-- Right-angle marker -->
+    <path d="M 20,0 L 20,-20 L 0,-20" fill="none" stroke="#000" stroke-width="1" />
+    
+    <text x="0" y="60" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">Surface normal is perpendicular to the surface</text>
+  </g>
+  
+  <!-- Section 2: Non-uniform Scaling -->
+  <rect x="50" y="340" width="700" height="220" rx="15" ry="15" fill="#f0f0f0" opacity="0.9" />
+  <text x="400" y="370" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" font-weight="bold" fill="#333">After Non-uniform Scaling (y-axis scaled by 0.5)</text>
+  
+  <!-- Dual view showing before and after -->
+  <g transform="translate(200, 450)">
+    <!-- Dashed outline of original for reference -->
+    <polygon points="-80,-40 80,-40 80,40 -80,40" stroke="#13c2c2" stroke-width="1" stroke-dasharray="4,2" fill="none" />
+    
+    <!-- Scaled surface (flattened on y-axis) -->
+    <polygon points="-80,-20 80,-20 80,20 -80,20" fill="#b5f5ec" stroke="#13c2c2" stroke-width="2" />
+    
+    <!-- Original normal (dashed) -->
+    <line x1="0" y1="0" x2="0" y2="-80" stroke="#1890ff" stroke-width="1" stroke-dasharray="4,2" />
+    
+    <!-- "Naively" transformed normal using model matrix (scaled by 0.5 in y) -->
+    <line x1="0" y1="0" x2="0" y2="-40" stroke="#f5222d" stroke-width="3" />
+    <polygon points="0,-40 -6,-34 6,-34" fill="#f5222d" />
+    
+    <text x="0" y="50" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#f5222d">Normal with model matrix</text>
+    <text x="0" y="70" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#f5222d">Incorrectly shortened (not perpendicular in 3D space)</text>
+  </g>
+  
+  <g transform="translate(600, 450)">
+    <!-- Dashed outline of original for reference -->
+    <polygon points="-80,-40 80,-40 80,40 -80,40" stroke="#13c2c2" stroke-width="1" stroke-dasharray="4,2" fill="none" />
+    
+    <!-- Scaled surface (flattened on y-axis) -->
+    <polygon points="-80,-20 80,-20 80,20 -80,20" fill="#b5f5ec" stroke="#13c2c2" stroke-width="2" />
+    
+    <!-- Original normal (dashed) -->
+    <line x1="0" y1="0" x2="0" y2="-80" stroke="#1890ff" stroke-width="1" stroke-dasharray="4,2" />
+    
+    <!-- Correctly transformed normal using normal matrix (compensates for scaling) -->
+    <line x1="0" y1="0" x2="0" y2="-160" stroke="#52c41a" stroke-width="3" />
+    <polygon points="0,-160 -6,-154 6,-154" fill="#52c41a" />
+    
+    <text x="0" y="50" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#52c41a">Normal with normal matrix</text>
+    <text x="0" y="70" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#52c41a">Correctly lengthened to maintain perpendicularity</text>
+  </g>
+  
+  <!-- Section 3: Tangent Space View -->
+  <rect x="50" y="580" width="700" height="220" rx="15" ry="15" fill="#f0f0f0" opacity="0.9" />
+  <text x="400" y="610" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" font-weight="bold" fill="#333">Why It Matters: Distorted vs. Correct Lighting</text>
+  
+  <!-- Tangent space view showing incorrect reflection -->
+  <g transform="translate(200, 680)">
+    <!-- Surface with distorted normal -->
+    <line x1="-100" y1="0" x2="100" y2="0" stroke="#13c2c2" stroke-width="3" />
+    
+    <!-- Non-perpendicular normal vector -->
+    <line x1="0" y1="0" x2="50" y2="-50" stroke="#f5222d" stroke-width="3" />
+    <polygon points="50,-50 44,-44 38,-54" fill="#f5222d" />
+    
+    <!-- Light ray with incorrect reflection -->
+    <line x1="-70" y1="-70" x2="0" y2="0" stroke="#fadb14" stroke-width="2" />
+    <line x1="0" y1="0" x2="-50" y2="-50" stroke="#fadb14" stroke-width="2" stroke-dasharray="5,2" />
+    
+    <!-- Angle markers -->
+    <path d="M -20,-20 A 28.28,28.28 0 0,1 0,0" fill="none" stroke="#f5222d" stroke-width="1" />
+    <path d="M 0,0 A 28.28,28.28 0 0,1 20,-20" fill="none" stroke="#f5222d" stroke-width="1" />
+    
+    <text x="0" y="-90" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#f5222d">Incorrect Light Reflection</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#f5222d">Uneven angles = unrealistic lighting</text>
+  </g>
+  
+  <!-- Tangent space view showing correct reflection -->
+  <g transform="translate(600, 680)">
+    <!-- Surface with correct normal -->
+    <line x1="-100" y1="0" x2="100" y2="0" stroke="#13c2c2" stroke-width="3" />
+    
+    <!-- Perpendicular normal vector -->
+    <line x1="0" y1="0" x2="0" y2="-70" stroke="#52c41a" stroke-width="3" />
+    <polygon points="0,-70 -6,-64 6,-64" fill="#52c41a" />
+    
+    <!-- Light ray with correct reflection -->
+    <line x1="-70" y1="-70" x2="0" y2="0" stroke="#fadb14" stroke-width="2" />
+    <line x1="0" y1="0" x2="70" y2="-70" stroke="#fadb14" stroke-width="2" stroke-dasharray="5,2" />
+    
+    <!-- Angle markers -->
+    <path d="M -20,-20 A 28.28,28.28 0 0,1 0,0" fill="none" stroke="#52c41a" stroke-width="1" />
+    <path d="M 0,0 A 28.28,28.28 0 0,1 20,-20" fill="none" stroke="#52c41a" stroke-width="1" />
+    
+    <text x="0" y="-90" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#52c41a">Correct Light Reflection</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#52c41a">Equal angles = physically accurate lighting</text>
+  </g>
+  
+  <!-- Mathematical formula -->
+  <rect x="150" y="830" width="500" height="40" rx="5" ry="5" fill="#262626" />
+  <text x="400" y="855" font-family="monospace" font-size="20" text-anchor="middle" fill="#13c2c2">normalMatrix = transpose(inverse(modelMatrix))</text>
+</svg>

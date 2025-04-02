@@ -1,0 +1,312 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="680" viewBox="0 0 800 680">
+  <!-- Background -->
+  <rect width="840" height="680" fill="#27008b" />
+  
+  <!-- Title -->
+  <rect x="50" y="20" width="740" height="60" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+  <text x="420" y="60" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold" fill="#333">
+    CPU vs GPU: Why WebGL Needs Explicit Data Transfer
+  </text>
+
+  <!-- CPU Architecture Panel -->
+  <g transform="translate(50, 100)">
+    <rect x="0" y="0" width="360" height="270" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <g transform="translate(20, 0)">
+    <text x="160" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      CPU Architecture
+    </text>
+    
+    <!-- CPU Illustration -->
+    <rect x="70" y="50" width="180" height="140" rx="5" ry="5" fill="#bbdefb" stroke="#1565c0" stroke-width="2" />
+    
+    <!-- Few but powerful cores -->
+    <rect x="95" y="70" width="40" height="40" rx="2" ry="2" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+    <rect x="145" y="70" width="40" height="40" rx="2" ry="2" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+    <rect x="195" y="70" width="40" height="40" rx="2" ry="2" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+    <rect x="95" y="120" width="40" height="40" rx="2" ry="2" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+    <rect x="145" y="120" width="40" height="40" rx="2" ry="2" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+    <rect x="195" y="120" width="40" height="40" rx="2" ry="2" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+    </g>
+
+    <!-- CPU Characteristics -->
+    <text x="180" y="210" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold" fill="#1565c0">
+      Few, Powerful Cores (4-32)
+    </text>
+    <text x="180" y="230" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Optimized for sequential tasks
+    </text>
+    <text x="180" y="250" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Complex branching logic
+    </text>
+  </g>
+  
+  <!-- GPU Architecture Panel -->
+  <g transform="translate(430, 100)">
+    <rect x="0" y="0" width="360" height="270" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+
+    <g transform="translate(20, 0)">
+    <text x="160" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      GPU Architecture
+    </text>
+    
+    <!-- GPU Illustration -->
+    <rect x="70" y="50" width="180" height="140" rx="5" ry="5" fill="#ffecb3" stroke="#ff8f00" stroke-width="2" />
+    
+    <!-- Many simple cores (grid of small squares) -->
+    <rect x="85" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="100" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="115" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="130" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="145" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="160" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="175" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="190" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="205" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="220" y="65" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    
+    <rect x="85" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="100" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="115" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="130" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="145" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="160" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="175" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="190" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="205" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="220" y="80" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    
+    <rect x="85" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="100" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="115" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="130" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="145" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="160" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="175" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="190" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="205" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="220" y="95" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    
+    <rect x="85" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="100" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="115" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="130" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="145" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="160" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="175" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="190" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="205" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="220" y="110" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    
+    <rect x="85" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="100" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="115" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="130" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="145" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="160" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="175" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="190" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="205" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="220" y="125" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    
+    <rect x="85" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="100" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="115" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="130" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="145" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="160" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="175" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="190" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="205" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="220" y="140" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    
+    <rect x="85" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="100" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="115" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="130" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="145" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="160" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="175" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="190" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="205" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="220" y="155" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    
+    <rect x="85" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="100" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="115" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="130" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="145" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="160" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="175" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="190" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="205" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    <rect x="220" y="170" width="10" height="10" rx="1" ry="1" fill="#ff8f00" stroke="#e65100" stroke-width="1" />
+    
+    <!-- GPU Characteristics -->
+    <text x="160" y="210" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold" fill="#ff8f00">
+      Thousands of Simple Cores
+    </text>
+    <text x="160" y="230" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Optimized for parallel operations
+    </text>
+    <text x="160" y="250" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Same instruction, multiple data (SIMD)
+    </text>
+    </g>
+  </g>
+  
+  <!-- Data Flow Panel -->
+  <g transform="translate(50, 390)">
+    <rect x="0" y="0" width="740" height="240" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="350" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      WebGL Data Flow: CPU to GPU
+    </text>
+    
+    <!-- CPU Side -->
+    <rect x="30" y="65" width="140" height="140" rx="5" ry="5" fill="#bbdefb" stroke="#1565c0" stroke-width="2" />
+    <text x="90" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1565c0">
+      JavaScript (CPU)
+    </text>
+    
+    <!-- JavaScript Code -->
+
+    <text x="95" y="95" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      // Create buffer
+    </text>
+    <text x="100" y="110" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      gl.createBuffer();
+    </text>
+    <text x="95" y="145" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      // Prepare data
+    </text>
+    <text x="100" y="160" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      new Float32Array([
+    </text>
+    <text x="100" y="175" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      0,0, 1,0, 0,1]);
+    </text>
+    
+    <!-- WebGL API -->
+    <rect x="210" y="65" width="140" height="140" rx="5" ry="5" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
+    <text x="280" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#0288d1">
+      WebGL API (State Machine)
+    </text>
+    
+    <!-- WebGL Commands -->
+
+    <text x="280" y="95" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      gl.bindBuffer()
+    </text>
+    <text x="280" y="115" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      gl.bufferData()
+    </text>
+    <text x="280" y="135" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      gl.vertexAttrib
+    </text>
+    <text x="280" y="155" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      Pointer()
+    </text>
+    <text x="280" y="175" font-family="monospace" font-size="10" text-anchor="middle" fill="#333">
+      gl.drawArrays()
+    </text>
+    
+    <!-- GPU Side -->
+    <rect x="390" y="65" width="330" height="140" rx="5" ry="5" fill="#ffecb3" stroke="#ff8f00" stroke-width="2" />
+    <text x="530" y="55" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#ff8f00">
+      GPU Execution (Parallel)
+    </text>
+    
+    <!-- GPU Processing -->
+    <g transform="translate(410, 85)">
+      <!-- Vertex Processing -->
+      <rect x="0" y="0" width="90" height="50" rx="3" ry="3" fill="white" stroke="#ff8f00" stroke-width="1" />
+      <text x="45" y="20" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">
+        Vertex Shader
+      </text>
+      <text x="45" y="35" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">
+        (Per Vertex)
+      </text>
+      
+      <!-- Fragment Processing -->
+      <rect x="200" y="0" width="90" height="50" rx="3" ry="3" fill="white" stroke="#ff8f00" stroke-width="1" />
+      <text x="245" y="20" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">
+        Fragment Shader
+      </text>
+      <text x="245" y="35" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">
+        (Per Pixel)
+      </text>
+      
+      <!-- Rasterization -->
+      <rect x="100" y="0" width="90" height="50" rx="3" ry="3" fill="white" stroke="#ff8f00" stroke-width="1" />
+      <text x="145" y="20" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">
+        Rasterization
+      </text>
+      <text x="145" y="35" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#333">
+        (Triangle→Pixels)
+      </text>
+      
+      <!-- Parallel Threads (small rectangles to show parallelism) -->
+      <g transform="translate(10, 0)">
+        <rect x="20" y="60" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="20" y="72" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="20" y="84" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="20" y="96" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="20" y="108" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      </g>
+      <g transform="translate(20, 0)">
+        <rect x="110" y="60" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="110" y="72" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="110" y="84" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="110" y="96" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="110" y="108" width="30" height="8" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      </g>
+      <g transform="translate(30, 0)">
+        <rect x="200" y="60" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="63.5" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="67" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="70.5" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="74" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="77.5" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="81" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="84.5" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="88" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="91.5" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="95" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="98.5" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="102" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="105.5" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="109" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+        <rect x="200" y="112.5" width="30" height="2" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      </g>
+    </g>
+    
+    <!-- Data Flow Arrows -->
+    <path d="M 150,135 L 200,135" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="200,135 194,131 194,139" fill="#333" />
+    
+    <path d="M 340,135 L 390,135" fill="none" stroke="#333" stroke-width="2" />
+    <polygon points="390,135 384,131 384,139" fill="#333" />
+    
+    <!-- Labels for Data Flow -->
+    <text x="175" y="120" font-family="monospace" font-weight="bold" font-size="10" text-anchor="middle" fill="#333">
+      API CALLS
+    </text>
+    
+    <text x="365" y="120" font-family="monospace" font-weight="bold" font-size="10" text-anchor="middle" fill="#333">
+      GPU COMMANDS
+    </text>
+    
+    <!-- Descriptions -->
+    <text x="90" y="225" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+      Prepare TypedArray data
+    </text>
+    
+    <text x="270" y="225" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+      Create buffers and issue draw calls
+    </text>
+    
+    <text x="530" y="225" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+      Execute thousands of threads in parallel
+    </text>
+  </g>
+</svg>
