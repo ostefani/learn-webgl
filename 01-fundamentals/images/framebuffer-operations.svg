@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="680" viewBox="0 0 800 680">
+  <!-- Background -->
+  <rect width="800" height="680" fill="#27008b" />
+  
+  <!-- Title -->
+  <rect x="20" y="20" width="760" height="60" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+  <text x="400" y="60" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold" fill="#333">
+    WebGL Framebuffer Operations: The Final Pipeline Stage
+  </text>
+  
+  <!-- Top Row Panels -->
+  <!-- Left Panel: Fragment Shader Output -->
+  <g transform="translate(20,100)">
+    <rect width="290" height="160" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="145" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      Fragment Shader Output
+    </text>
+    
+    <!-- Fragment Shader Illustration -->
+    <!-- Center the illustration (220×80) within 300 wide panel -->
+    <rect x="40" y="50" width="220" height="80" rx="5" ry="5" fill="#ffecb3" stroke="#ff8f00" stroke-width="2" />
+    
+    <!-- Threads Representation (3 columns of thread blocks) -->
+    <!-- Adjust the group so that the 140px total width (3 columns spaced by 10px gaps) is centered in the 220 illustration -->
+    <g transform="translate(80,55)">
+      <!-- First Column -->
+      <rect x="0" y="0" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="0" y="15" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="0" y="30" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="0" y="45" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="0" y="60" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <!-- Second Column -->
+      <rect x="50" y="0" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="50" y="15" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="50" y="30" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="50" y="45" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="50" y="60" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <!-- Third Column -->
+      <rect x="100" y="0" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="100" y="15" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="100" y="30" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="100" y="45" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+      <rect x="100" y="60" width="40" height="10" rx="1" ry="1" fill="#ff8f00" opacity="0.8" />
+    </g>
+    
+    <text x="145" y="150" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Fragment colors are calculated in parallel
+    </text>
+  </g>
+  
+  <!-- Middle Panel: Fixed-Function Tests -->
+  <g transform="translate(320,100)">
+    <rect width="330" height="160" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="160" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      Fixed-Function Tests
+    </text>
+    
+    <!-- Fixed Function Tests Illustration -->
+    <!-- Draw a central box (with a margin) -->
+    <rect x="30" y="50" width="270" height="80" rx="5" ry="5" fill="#bbdefb" stroke="#1565c0" stroke-width="2" />
+    
+    <!-- Test Blocks: 4 blocks with 50×60 each and 10px gaps -->
+    <g transform="translate(40,60)">
+      <!-- First Block: Scissor Test -->
+      <rect x="1" y="0" width="59" height="60" rx="3" ry="3" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+      <text x="31" y="28" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+        Scissor
+      </text>
+      <text x="31" y="46" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+        Test
+      </text>
+      <!-- Second Block: Stencil Test -->
+      <rect x="64" y="0" width="59" height="60" rx="3" ry="3" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+      <text x="93" y="28" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+        Stencil
+      </text>
+      <text x="93" y="46" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+        Test
+      </text>
+      <!-- Third Block: Depth Test -->
+      <rect x="127" y="0" width="59" height="60" rx="3" ry="3" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+      <text x="156" y="28" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+        Depth
+      </text>
+      <text x="156" y="46" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+        Test
+      </text>
+      <!-- Fourth Block: Blending -->
+      <rect x="190" y="0" width="59" height="60" rx="3" ry="3" fill="#1565c0" stroke="#0d47a1" stroke-width="2" />
+      <text x="219" y="35" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white" font-weight="bold">
+        Blending
+      </text>
+    </g>
+    
+    <text x="159" y="150" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Fixed-function hardware for maximum efficiency
+    </text>
+  </g>
+  
+  <!-- Right Panel: Output Screen -->
+  <g transform="translate(660,100)">
+    <rect width="120" height="160" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="60" y="30" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#333">
+      Screen
+    </text>
+    <!-- Screen Content Representation -->
+    <rect x="10" y="40" width="100" height="100" rx="2" ry="2" fill="#e8f5e9" />
+    <circle cx="60" cy="90" r="20" fill="#81c784" />
+    <rect x="40" y="70" width="20" height="40" fill="#388e3c" />
+  </g>
+  
+  <!-- Details Panel (Lower Row) -->
+  <g transform="translate(20,280)">
+    <rect width="760" height="370" rx="10" ry="10" fill="#f0f0f0" opacity="0.9" />
+    <text x="380" y="30" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#333">
+      Framebuffer Operations in Detail
+    </text>
+    
+    <!-- Scissor Test Detail -->
+    <g transform="translate(20,60)">
+      <rect width="160" height="145" rx="5" ry="5" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
+      <text x="80" y="25" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#0288d1">
+        Scissor Test
+      </text>
+      <!-- Illustration -->
+      <rect x="30" y="40" width="100" height="60" rx="2" ry="2" fill="white" stroke="#0288d1" stroke-width="1" />
+      <!-- Full area background -->
+      <rect x="35" y="45" width="90" height="50" fill="#e6e6e6" />
+      <!-- Scissor rectangle -->
+      <rect x="55" y="55" width="50" height="30" fill="#bbdefb" stroke="#0288d1" stroke-width="1" stroke-dasharray="2,2" />
+      <text x="80" y="120" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Restricts rendering to
+      </text>
+      <text x="80" y="135" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        a defined rectangle
+      </text>
+    </g>
+    
+    <!-- Stencil Test Detail -->
+    <g transform="translate(200,60)">
+      <rect width="160" height="145" rx="5" ry="5" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
+      <text x="80" y="25" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#0288d1">
+        Stencil Test
+      </text>
+      <!-- Illustration -->
+      <rect x="30" y="40" width="100" height="60" rx="2" ry="2" fill="white" stroke="#0288d1" stroke-width="1" />
+      <rect x="35" y="45" width="90" height="50" fill="#e6e6e6" />
+      <path d="M 55,70 L 75,50 L 95,70 L 85,90 L 65,90 Z" fill="#bbdefb" stroke="#0288d1" stroke-width="1" />
+      <text x="80" y="120" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Enables complex
+      </text>
+      <text x="80" y="135" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        masking effects
+      </text>
+    </g>
+    
+    <!-- Depth Test Detail -->
+    <g transform="translate(380,60)">
+      <rect width="160" height="145" rx="5" ry="5" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
+      <text x="80" y="25" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#0288d1">
+        Depth Test
+      </text>
+      <!-- Illustration -->
+      <rect x="30" y="40" width="100" height="60" rx="2" ry="2" fill="white" stroke="#0288d1" stroke-width="1" />
+      <rect x="35" y="45" width="90" height="50" fill="#e6e6e6" />
+      <!-- Two overlapping objects at different depths -->
+      <rect x="60" y="60" width="30" height="20" fill="#bbdefb" stroke="#0288d1" stroke-width="1" />
+      <rect x="70" y="55" width="40" height="25" fill="#64b5f6" stroke="#0288d1" stroke-width="1" />
+      <text x="80" y="120" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Ensures proper
+      </text>
+      <text x="80" y="135" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        3D occlusion
+      </text>
+    </g>
+    
+    <!-- Blending Detail -->
+    <g transform="translate(560,60)">
+      <rect width="160" height="145" rx="5" ry="5" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
+      <text x="80" y="25" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#0288d1">
+        Blending
+      </text>
+      <!-- Illustration -->
+      <rect x="30" y="40" width="100" height="60" rx="2" ry="2" fill="white" stroke="#0288d1" stroke-width="1" />
+      <rect x="35" y="45" width="90" height="50" fill="#e6e6e6" />
+      <!-- Overlapping circles -->
+      <circle cx="70" cy="65" r="20" fill="#bbdefb" opacity="0.7" />
+      <circle cx="90" cy="75" r="20" fill="#64b5f6" opacity="0.7" />
+      <text x="80" y="120" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        Combines fragments
+      </text>
+      <text x="80" y="135" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+        with existing colors
+      </text>
+    </g>
+    
+    <!-- Enabled Techniques Section -->
+    <rect x="20" y="220" width="720" height="130" rx="5" ry="5" fill="white" stroke="#333" stroke-width="1" />
+    <text x="380" y="250" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#333">
+      Enabled Techniques
+    </text>
+    
+    <!-- Technique Boxes -->
+    <!-- Technique 1: Order-Independent Transparency -->
+    <g transform="translate(50,270)">
+      <rect width="180" height="60" rx="3" ry="3" fill="#f0f0f0" stroke="#333" stroke-width="1" />
+      <text x="90" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold" fill="#333">
+        Order-Independent
+      </text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        Transparency
+      </text>
+    </g>
+    
+    <!-- Technique 2: Shadow Mapping -->
+    <g transform="translate(280,270)">
+      <rect width="180" height="60" rx="3" ry="3" fill="#f0f0f0" stroke="#333" stroke-width="1" />
+      <text x="90" y="35" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold" fill="#333">
+        Shadow Mapping
+      </text>
+    </g>
+    
+    <!-- Technique 3: Selective Rendering -->
+    <g transform="translate(510,270)">
+      <rect width="180" height="60" rx="3" ry="3" fill="#f0f0f0" stroke="#333" stroke-width="1" />
+      <text x="90" y="25" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold" fill="#333">
+        Selective
+      </text>
+      <text x="90" y="45" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+        Rendering
+      </text>
+    </g>
+  </g>
+</svg>
